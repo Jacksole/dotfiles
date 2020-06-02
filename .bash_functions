@@ -44,17 +44,7 @@ gf() {
 	  git add . && git commit -m "$1" && git push origin "$CURRENT_BRANCH"
   }
 
-# Git merge
-# Eg. gm branch-name
-gm() {
-   git merge "$1"
-}
 
-# Git checkout
-# Eg. gc branch-name
-gc(){
-    git checkout "$1" && gp
-}
 
 find-up () {
     path=$(pwd)
@@ -105,4 +95,20 @@ cdnvm(){
             nvm use "$nvm_version";
         fi
     fi
+}
+
+function kts {
+  tmux kill-session -t "$1"
+}
+
+function tmnew {
+  tmux new -s "$1"
+}
+
+function tmattach {
+  tmux a -t "$1""
+}
+
+fuction edit {
+ vim "$1""
 }

@@ -21,6 +21,11 @@ alias df="pydf"
 alias myip="curl http://ipecho.net/plain; echo"
 alias webify="mogrify -resize 690\> *.png"
 alias upload="sftp username@server.com:/path/to/upload/directory"
+# Edit .bashrc
+alias bashedit='sudo vim ~/.bashrc'
+
+# Force terminal to recognize changes to .bashrc
+alias bashrefresh='source ~/.bashrc'
 # ----------------------
 # Git Aliases
 # ----------------------
@@ -58,3 +63,11 @@ alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsts='git stash save'
+alias aclean='sudo apt autoclean'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+alias remove='sudo apt autoremove'
+alias clean='sudo apt-get clean'
+alias pomodorostrt='sleep 1500 && notify-send "Your pomodoro session just ended. Have a well deserved 5 minutes break"'
+alias pomodorobrk='sleep 300 && notify-send "Back to work"'
+alias pomodoro='pomodorostrt; pomodorobrk' 
