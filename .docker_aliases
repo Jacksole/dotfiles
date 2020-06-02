@@ -1,0 +1,10 @@
+alias dk='docker'
+alias dkl='docker logs'
+alias dklf='docker logs -f'
+alias dki='docker images'
+alias dks='docker service'
+alias dkrm='docker rm'
+alias dm='docker-machine'
+alias dmx='docker-machine ssh'
+alias dkps="docer ps --format '{{.ID}} - {{.Names}} - {{.Status}} - {{.Image}} '"
+alias dksb='docker service bounce'
