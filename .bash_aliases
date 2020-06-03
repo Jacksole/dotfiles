@@ -71,3 +71,4 @@ alias clean='sudo apt-get clean'
 alias pomodorostrt='sleep 1500 && notify-send "Your pomodoro session just ended. Have a well deserved 5 minutes break"'
 alias pomodorobrk='sleep 300 && notify-send "Back to work"'
 alias pomodoro='pomodorostrt; pomodorobrk' 
+alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
