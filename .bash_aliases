@@ -2,6 +2,17 @@
 alias hs='history | grep'
 alias ll="ls -lha"
 alias ls="ls -CF"
+# Sort by file size
+alias lt='ls --human-readable --size -1 -S --classify'
+# Sort by modification time
+alias left='ls -t -1'
+# Count files
+alias count='find . -type f | wc -l'
+# Create a Python virtual environment
+alias ve='python3 -m venv ./venv'
+alias va='source ./venv/bin/activate'
+# Add a copy progess bar
+alias cpv='rsync -ah --info=progress2'
 alias sl="ls"
 alias lsl="ls -lhFA | less"
 alias cd..="cd .."
@@ -21,14 +32,10 @@ alias df="pydf"
 alias myip="curl http://ipecho.net/plain; echo"
 alias webify="mogrify -resize 690\> *.png"
 alias upload="sftp username@server.com:/path/to/upload/directory"
-# Edit .bashrc
-alias bashedit='sudo vim ~/.bashrc'
-
-# Force terminal to recognize changes to .bashrc
-alias bashrefresh='source ~/.bashrc'
 # ----------------------
 # Git Aliases
 # ----------------------
+alias cg='cd `git rev-parse --show-toplevel`'
 alias g='git'
 alias ga='git add'
 alias gaa='git add .'
@@ -63,12 +70,28 @@ alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsts='git stash save'
+alias startgit='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
+#---------------------------------
+# Bash Maintenance
+#--------------------------------
 alias aclean='sudo apt autoclean'
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get upgrade'
 alias remove='sudo apt autoremove'
 alias clean='sudo apt-get clean'
+# Edit .bashrc
+alias bashedit='sudo vim ~/.bashrc'
+
+# Force terminal to recognize changes to .bashrc
+alias bashrefresh='source ~/.bashrc'
+#-------------------------------
+# Time Management
+#-------------------------------
 alias pomodorostrt='sleep 1500 && notify-send "Your pomodoro session just ended. Have a well deserved 5 minutes break"'
 alias pomodorobrk='sleep 300 && notify-send "Back to work"'
 alias pomodoro='pomodorostrt; pomodorobrk' 
+#--------------------------------
+# Python Aliases
+#--------------------------------
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
+alias pyoutdated='python3 -m pip list --outdated'

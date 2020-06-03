@@ -32,10 +32,12 @@ Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tmhedberg/simpylfold'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plugin 'junegunn/fzf.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'w0rp/ale'
@@ -48,6 +50,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-heroku'
 Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
+Plugin 'fatih/vim-go'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ryanoasis/vim-devicons'
@@ -87,14 +90,18 @@ nnoremap <space> za
 
 let g:SimpylFold_docstring_preview=1
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
+
+"spaces for indents
+au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
+au BufRead,BufNewFile *.py,*.pyw set expandtab
+au BufRead,BufNewFile *.py set softtabstop=4
+
+" Wrap text after a certain number of characters
+au BufRead,BufNewFile *.py,*.pyw, set textwidth=79
+
+" Use UNIX (\n) line endings.
+au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
@@ -104,7 +111,9 @@ au BufNewFile,BufRead *.js, *.html, *.css
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 1
+let g:SimpylFold_fold_import = 1
 
 let python_highlight_all=1
 syntax on
@@ -188,8 +197,25 @@ map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set
 conceallevel=1"<CR>
 
 let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
-let b:ale_fixers = ['eslint']
+let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 let b:ale_fix_on_save = 1
+" Set this. Airline will handle the rest.
+t g:airline#extensions#ale#enabled = 1
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+	let l:all_errors = l:counts.error + l:counts.style_error
+	let l:all_non_errors = l:counts.total - l:all_errors
+
+	return l:counts.total == 0 ? 'OK' : printf(
+	\   '%dW %dE',
+	\   all_non_errors,
+	\   all_errors
+	\)
+endfunction
+
+set statusline+=%{LinterStatus()}
 
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
@@ -198,6 +224,8 @@ nmap <Leader>hu <Plug>GitGutterUndoHunk
 
 " Generate tags
 set statusline+=%{gutentags#statusline()}
+
+
 " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 
@@ -255,6 +283,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_checkers_markdown = ['textlint']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1

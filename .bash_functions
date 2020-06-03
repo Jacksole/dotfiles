@@ -14,7 +14,7 @@ function extract {
     do
       if [ -f "$n" ] ; then
           case "${n%,}" in
-            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
+            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
                          tar xvf "$n"       ;;
             *.lzma)      unlzma ./"$n"      ;;
             *.bz2)       bunzip2 ./"$n"     ;;
@@ -40,9 +40,10 @@ fi
 }
 
 gf() {
-	 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-	  git add . && git commit -m "$1" && git push origin "$CURRENT_BRANCH"
-  }
+   CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+   git add . && git commit -m "$1" && git push origin "$CURRENT_BRANCH"
+
+}
 
 
 
@@ -52,6 +53,7 @@ find-up () {
         path=${path%/*}
     done
     echo "$path"
+
 }
 
 cdnvm(){
@@ -95,20 +97,48 @@ cdnvm(){
             nvm use "$nvm_version";
         fi
     fi
+
 }
 
 function kts {
   tmux kill-session -t "$1"
+
 }
 
 function tmnew {
   tmux new -s "$1"
+
 }
 
 function tmattach {
-  tmux a -t "$1""
+  tmux a -t "$1"
+
 }
 
-fuction edit {
- vim "$1""
+function edit {
+  vim "$1"
+
+}
+
+function pyupdate {
+  python3 -m pip install -U -r "$1"
+
+}
+
+
+function mnt {
+  "mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3;  }' | column -t | egrep ^/dev/ | sort"
+
+}
+
+function cl() {
+    DIR="$*";
+        # if no DIR given, go home
+        if [ $# -lt 1  ]; then
+                DIR=$HOME;
+    fi;
+    builtin cd "${DIR}" && \
+    # use your preferred ls command
+        ls -F --color=auto
+
 }
