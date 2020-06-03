@@ -58,3 +58,4 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh  ]; then
 fi
 
 export DISPLAY=:0
+export PATH=$PATH:/usr/local/go/bin

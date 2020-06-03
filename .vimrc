@@ -16,11 +16,13 @@ Plugin 'gmarik/Vundle.vim'
 " used Bundle instead of Plugin)
 Plugin 'mattn/emmet-vim'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'pangloss/vim-javascript'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'chrisbra/csv.vim'
 Plugin 'natebosch/vim-lsc'
 Plugin 'natebosch/vim-lsc-dart'
 Plugin 'nvie/vim-flake8'
@@ -29,7 +31,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'sheerun/vim-polyglot'
@@ -46,6 +48,8 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-heroku'
 Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
+" Use release branch (recommend)
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ryanoasis/vim-devicons'
 " ...
 
@@ -64,9 +68,10 @@ set ruler
 set title
 
 " Switch tabs
-map 8 <Esc>:tabe 
+map 8 <Esc>:tabe
 map 9 gT
 map 0 gt
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -96,11 +101,9 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set softtabstop=2
     \ set shiftwidth=2
 
+highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" YCME config
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 let python_highlight_all=1
@@ -124,8 +127,8 @@ map ; :Files<CR>
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='.
   a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-   exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'.
-   a:extension .'$#'
+  exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'.
+  a:extension .'$#'
 endfunction
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
@@ -143,10 +146,27 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
 call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868',
+call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
 call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
 call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868','#151515')
 
+let g:NERDTreeIndicatorMapCustom = {
+                        \ "Modified"  : "✹",
+                        \ "Staged"    : "✚",
+                        \ "Untracked" : "✭",
+                        \ "Renamed"   : "➜",
+                        \ "Unmerged"  : "═",
+                        \ "Deleted"   : "✖",
+                        \ "Dirty"     : "✗",
+                        \ "Clean"     : "✔",
+                        \ 'Ignored'   : '☒',
+                        \ "Unknown"   : "?"
+ }
+
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
 
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
@@ -163,6 +183,9 @@ let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set
+conceallevel=1"<CR>
 
 let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
 let b:ale_fixers = ['eslint']
@@ -223,12 +246,16 @@ else
   set signcolumn=yes
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
