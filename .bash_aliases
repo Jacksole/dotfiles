@@ -1,7 +1,7 @@
 # Bash alias to search through history with speed accuracy
 alias hs='history | grep'
-alias ll="ls -lha"
-alias ls="ls -CF"
+alias ll='ls -lha'
+alias ls='ls -CF'
 # Sort by file size
 alias lt='ls --human-readable --size -1 -S --classify'
 # Sort by modification time
@@ -16,7 +16,7 @@ alias cpv='rsync -ah --info=progress2'
 alias sl="ls"
 alias lsl="ls -lhFA | less"
 alias cd..="cd .."
-alias ..="cd .."
+alias ..='cd ..'
 alias fhere="find . -name"
 alias df="df -Tha --total"
 alias du="du -ach | sort -h"
@@ -25,7 +25,6 @@ alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias mkdir="mkdir -pv"
 alias wget="wget -c"
-alias histg="history | grep"
 alias top="htop"
 alias top="htop"
 alias df="pydf"
@@ -95,3 +94,13 @@ alias pomodoro='pomodorostrt; pomodorobrk'
 #--------------------------------
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
+#------------------------------
+# File Management
+#------------------------------
+alias mv='mv -i'
+alias rm='rm -i'
+alias tcn='mv --force -t ~/.local/share/Trash' 
+#-------------------------------
+# Folder Management
+#------------------------------
+alias mkdir="mkdir -pv"
