@@ -7,6 +7,8 @@ sensors  # Needs: 'sudo apt-get install lm-sensors'
 uptime   # Needs: 'sudo apt-get install lsscsi'
 free -m
 
+sudo apt-get update && sudo apt-get upgrade 
+
 if [ -f ~/.bash_aliases  ]; then
 	. ~/.bash_aliases
 fi

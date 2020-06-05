@@ -90,17 +90,81 @@ alias pomodorostrt='sleep 1500 && notify-send "Your pomodoro session just ended.
 alias pomodorobrk='sleep 300 && notify-send "Back to work"'
 alias pomodoro='pomodorostrt; pomodorobrk' 
 #--------------------------------
-# Python Aliases
+# Program Aliases
 #--------------------------------
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
+alias droid='android'
 #------------------------------
 # File Management
 #------------------------------
 alias mv='mv -i'
 alias rm='rm -i'
 alias tcn='mv --force -t ~/.local/share/Trash' 
+# install  colordiff package :)
+alias diff='colordiff'
+alias cp='cp -i'
+alias ln='ln -i'
+ 
+# Parenting changing perms on / #
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
 #-------------------------------
 # Folder Management
 #------------------------------
 alias mkdir="mkdir -pv"
+#------------------------------
+# Database Management
+#------------------------------
+alias pgstart='sudo service postgresql start'
+alias pgstop='sudo service postgresql stop'
+alias pgrestart='sudo service postgresql restart'
+alias pgstats='sudi service postgresql status'
+alias runpg='sudo -u postgres psql'
+alias mysqlstart='sudo service mysql start'
+alias mysqlstop='sudo service mysql stop'
+alias mysqlrestart='sudo service mysql restart'
+alias mysqlstats='sudo service mysql status'
+alias apstart='sudo service apache start'
+alias apstop='sudo service apache stop'
+alias aprestart='sudo service apache restart'
+alias apstats='sudo service apache status'
+alias redstart='sudo service redis start'
+alias redstop='sudo service redis stop'
+alias redrestart='sudo service redis restart'
+alias rcli='sudo redis-cli'
+#-------------------------------
+# Misc
+#-------------------------------
+alias wttr='curl wttr.in'
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias bc='bc -l'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+#------------------------------
+# Networking
+#------------------------------
+# Stop after sending count ECHO_REQUEST packets #
+alias ping='ping -c 5'
+# Do not wait interval 1 second, go fast #
+alias fastping='ping -c 100 -s.2'
+alias ports='netstat -tulanp'
+## shortcut  for iptables and pass it via sudo#
+alias ipt='sudo /sbin/iptables'
+ 
+# display all rules #
+alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
+alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+alias firewall=iptlist 
+# get web server headers #
+alias header='curl -I'
+ 
+# find out if remote server supports gzip / mod_deflate or not #
+alias headerc='curl -I --compress'

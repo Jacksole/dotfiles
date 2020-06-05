@@ -15,6 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 Plugin 'mattn/emmet-vim'
+Plugin 'ap/vim-css-color'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'godlygeek/tabular'
@@ -45,6 +46,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'skywind3000/gutentags_plus'
+Plugin 'puremourning/vimspector'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-heroku'
@@ -103,10 +105,14 @@ au BufRead,BufNewFile *.py,*.pyw, set textwidth=79
 " Use UNIX (\n) line endings.
 au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
 
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+" Full Stack Development
+au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css set shiftwidth=2
+au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
+
+let g:user_emmet_mode='a' "enable emmet all function in all mode."
+let g:user_emmet_leader_key='<C-Y>,'
 
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -132,32 +138,6 @@ map <C-o> :NERDTreeToggle<CR>
 
 map ; :Files<CR>
 
-" NERDTrees File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='.
-  a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'.
-  a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
-call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868','#151515')
 
 let g:NERDTreeIndicatorMapCustom = {
                         \ "Modified"  : "✹",
@@ -170,7 +150,36 @@ let g:NERDTreeIndicatorMapCustom = {
                         \ "Clean"     : "✔",
                         \ 'Ignored'   : '☒',
                         \ "Unknown"   : "?"
- }
+			\ }
+
+" you can add these colors to your .vimrc to help customizing
+let s:brown = "#905532"
+let s:aqua =  "#3AFFDB"
+let s:blue = "#689FB6"
+let s:darkBlue = "#44788E"
+let s:purple = "#834F79"
+let s:lightPurple = "#834F79"
+let s:red = "#AE403F"
+let s:beige = "#F5C06F"
+let s:yellow = "#F09F17"
+let s:orange = "#D4843E"
+let s:darkOrange = "#F16529"
+let s:pink = "#CB6F6F"
+let s:salmon = "#EE6E73"
+let s:green = "#8FAA54"
+let s:lightGreen = "#31B53E"
+let s:white = "#FFFFFF"
+let s:rspec_red = '#FE405F'
+let s:git_orange = '#F54D27'
+
+let g:NERDTreeExtensionHighlightColor = {} "needed to avoid errors
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets css files to blue 
+let g:NERDTreeExactMatchHighlightColor = {} " needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange 
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files
 
 augroup javascript_folding
     au!
@@ -193,14 +202,13 @@ let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
 
-map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set
-conceallevel=1"<CR>
+set conceallevel=1
 
 let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
 let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 let b:ale_fix_on_save = 1
 " Set this. Airline will handle the rest.
-t g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -289,3 +297,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:vimspector_enable_mappings = 'HUMAN'
+
+syntax enable
+filetype plugin indent on
+
+nmap <F6> <Plug>VimspectorContinue
+nmap <F7> <Plug>VimspectorStop
+nmap <F8> <Plug>VimspectorRestart
