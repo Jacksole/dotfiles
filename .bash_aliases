@@ -13,7 +13,6 @@ alias ve='python3 -m venv ./venv'
 alias va='source ./venv/bin/activate'
 # Add a copy progess bar
 alias cpv='rsync -ah --info=progress2'
-alias sl="ls"
 alias lsl="ls -lhFA | less"
 alias cd..="cd .."
 alias ..='cd ..'
@@ -78,6 +77,7 @@ alias update='sudo apt-get update'
 alias upgrade='sudo apt-get upgrade'
 alias remove='sudo apt autoremove'
 alias clean='sudo apt-get clean'
+alias install='sudo apt-get install'
 # Edit .bashrc
 alias bashedit='sudo vim ~/.bashrc'
 
@@ -105,7 +105,7 @@ alias tcn='mv --force -t ~/.local/share/Trash'
 alias diff='colordiff'
 alias cp='cp -i'
 alias ln='ln -i'
- 
+alias n='nnn' 
 # Parenting changing perms on / #
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -126,14 +126,18 @@ alias mysqlstart='sudo service mysql start'
 alias mysqlstop='sudo service mysql stop'
 alias mysqlrestart='sudo service mysql restart'
 alias mysqlstats='sudo service mysql status'
-alias apstart='sudo service apache start'
-alias apstop='sudo service apache stop'
-alias aprestart='sudo service apache restart'
-alias apstats='sudo service apache status'
+alias mysqlrun='mysql -uroot -ppassword'
 alias redstart='sudo service redis start'
 alias redstop='sudo service redis stop'
 alias redrestart='sudo service redis restart'
 alias rcli='sudo redis-cli'
+#------------------------------
+# Web Server
+#------------------------------
+alias apstart='sudo service apache start'
+alias apstop='sudo service apache stop'
+alias aprestart='sudo service apache restart'
+alias apstats='sudo service apache status'
 #-------------------------------
 # Misc
 #-------------------------------

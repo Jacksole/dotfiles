@@ -46,7 +46,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'skywind3000/gutentags_plus'
-Plugin 'puremourning/vimspector'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-heroku'
@@ -72,6 +71,10 @@ set modeline
 set ruler
 set title
 
+" Spell Checker
+set spell
+set spellfile=~/.vim/spell/en.utf-8.add
+
 " Switch tabs
 map 8 <Esc>:tabe
 map 9 gT
@@ -92,6 +95,14 @@ nnoremap <space> za
 
 let g:SimpylFold_docstring_preview=1
 
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 1
+let g:SimpylFold_fold_import = 1
+
+let python_highlight_all=1
+syntax on
+
+" Python formatting
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 
 "spaces for indents
@@ -105,6 +116,13 @@ au BufRead,BufNewFile *.py,*.pyw, set textwidth=79
 " Use UNIX (\n) line endings.
 au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
 
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Running Python in VIM
+autocmd FileType python map <buffer> <F12> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F12> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
 " Full Stack Development
 au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
@@ -114,16 +132,6 @@ au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 let g:user_emmet_mode='a' "enable emmet all function in all mode."
 let g:user_emmet_leader_key='<C-Y>,'
 
-highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring = 1
-let g:SimpylFold_fold_import = 1
-
-let python_highlight_all=1
-syntax on
-
 if has('gui_running')
  set background=dark
  colorscheme solarized
@@ -131,13 +139,14 @@ else
  colorscheme zenburn
 endif
 
-call togglebg#map("<F5>")
+call togglebg#map("<F4>")
 
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-map <C-o> :NERDTreeToggle<CR>
-
+" Activate Fuzzy Finder
 map ; :Files<CR>
 
+" NERDTree Customizations
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+map <C-o> :NERDTreeToggle<CR>
 
 let g:NERDTreeIndicatorMapCustom = {
                         \ "Modified"  : "✹",
@@ -150,7 +159,7 @@ let g:NERDTreeIndicatorMapCustom = {
                         \ "Clean"     : "✔",
                         \ 'Ignored'   : '☒',
                         \ "Unknown"   : "?"
-			\ }
+                        \ }
 
 " you can add these colors to your .vimrc to help customizing
 let s:brown = "#905532"
@@ -172,15 +181,18 @@ let s:white = "#FFFFFF"
 let s:rspec_red = '#FE405F'
 let s:git_orange = '#F54D27'
 
+let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'cpp', 'php', 'rb', 'js', 'css', 'html', 'py']
 let g:NERDTreeExtensionHighlightColor = {} "needed to avoid errors
-let g:NERDTreeExtensionHighlightColor['css'] = s:blue " sets css files to blue 
-let g:NERDTreeExactMatchHighlightColor = {} " needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange 
-let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue "sets css files to blue
+let g:NERDTreeExtensionHighlightColor['py'] = s:lightPurple "sets python to lightPurple
+let g:NERDTreeExactMatchHighlightColor = {} "needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
+let g:NERDTreePatternMatchHighlightColor = {} "this line is needed to avoid
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets
-let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for
-let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige "sets the color for
+let g:WebDevIconsDefaultFileSymbolColor = s:blue "sets the color for files
 
+" Javascript Customizations
 augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
@@ -204,19 +216,50 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 set conceallevel=1
 
-let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
-let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+" ALE formatting
+let g:ale_linters = {
+\ 'python3': ['bandit', 'flake8', 'mypy'],
+\ 'javascript': ['eslint'],
+\ 'sql': ['sqlint'],
+\ 'tex': ['textlint'],
+\ 'yaml': ['yamllint'],
+\ 'cpp': ['clangd'],
+\ 'c': ['clangd'],
+\ 'json': ['jsonlint'],
+\ 'java': ['checkstyle'],
+\ 'html':['stylelint'],
+\ 'css': ['stylelint'],
+\ 'go': ['golint'],
+\ 'gitcommit': ['gitlint'],
+\ 'dockerfile': ['dockerfile_lint'],
+\ 'dart': ['dartanalyzer'],
+\}
+
+  " In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'python3': ['autopep8']
+\}
+
+  " Enable completion where available.
+  " This setting must be set before ALE is loaded.
+
+  " You should not turn this setting on if you wish to use ALE as a completion
+  " source for other completion plugins, like Deoplete.
+let g:ale_completion_enabled = 1
+
 let b:ale_fix_on_save = 1
-" Set this. Airline will handle the rest.
+  " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
-	let l:all_errors = l:counts.error + l:counts.style_error
-	let l:all_non_errors = l:counts.total - l:all_errors
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
 
-	return l:counts.total == 0 ? 'OK' : printf(
+    return l:counts.total == 0 ? 'OK' : printf(
 	\   '%dW %dE',
 	\   all_non_errors,
 	\   all_errors
@@ -225,6 +268,11 @@ endfunction
 
 set statusline+=%{LinterStatus()}
 
+ " Navigate to next error
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Git Gutter
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
 nmap <Leader>hs <Plug>GitGutterStageHunk
@@ -234,23 +282,20 @@ nmap <Leader>hu <Plug>GitGutterUndoHunk
 set statusline+=%{gutentags#statusline()}
 
 
-" enable gtags module
+  " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 
-" config project root markers.
+  " config project root markers.
 let g:gutentags_project_root = ['.root']
 
-" generate datebases in my cache directory, prevent gtags files polluting my
-" project
+  " generate datebases in my cache directory, prevent gtags files polluting my
+  " project
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 
-" change focus to quickfix window after search (optional).
+  " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-
+" Template Management
 let g:tmpl_search_paths = ['~/templates']
 let g:tmpl_author_email = 'leaundre.jackson87@gmail.com'
 let g:tmpl_author_name = 'Le Aundre Jackson'
@@ -298,11 +343,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:vimspector_enable_mappings = 'HUMAN'
 
 syntax enable
 filetype plugin indent on
 
-nmap <F6> <Plug>VimspectorContinue
-nmap <F7> <Plug>VimspectorStop
-nmap <F8> <Plug>VimspectorRestart
+let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
+
+nmap <F7> <Plug>VimspectorContinue
+nmap <F8> <Plug>VimspectorStop
+nmap <F9> <Plug>VimspectorRestart
