@@ -7,7 +7,7 @@ sensors  # Needs: 'sudo apt-get install lm-sensors'
 uptime   # Needs: 'sudo apt-get install lsscsi'
 free -m
 
-sudo apt-get update && sudo apt-get upgrade 
+sudo apt-get update && sudo apt-get upgrade
 
 if [ -f ~/.bash_aliases  ]; then
 	. ~/.bash_aliases
@@ -23,7 +23,7 @@ fi
 
 if [ -f ~/.docker_fuctions ]; then
 	. ~/.docker_functions
-fi 
+fi
 
 env=~/.ssh/agent.env
 

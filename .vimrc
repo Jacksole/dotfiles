@@ -134,12 +134,12 @@ let g:user_emmet_leader_key='<C-Y>,'
 
 if has('gui_running')
  set background=dark
- colorscheme solarized
+ colorscheme industry
 else
  colorscheme zenburn
 endif
 
-call togglebg#map("<F4>")
+call togglebg#map("<F2>")
 
 " Activate Fuzzy Finder
 map ; :Files<CR>

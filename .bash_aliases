@@ -8,9 +8,6 @@ alias lt='ls --human-readable --size -1 -S --classify'
 alias left='ls -t -1'
 # Count files
 alias count='find . -type f | wc -l'
-# Create a Python virtual environment
-alias ve='python3 -m venv ./venv'
-alias va='source ./venv/bin/activate'
 # Add a copy progess bar
 alias cpv='rsync -ah --info=progress2'
 alias lsl="ls -lhFA | less"
@@ -95,6 +92,10 @@ alias pomodoro='pomodorostrt; pomodorobrk'
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
 alias droid='android'
+  # Create a Python virtual environment
+alias ve='python3 -m venv ./venv'
+alias va='source ./venv/bin/activate'
+alias py3='python3'
 #------------------------------
 # File Management
 #------------------------------
