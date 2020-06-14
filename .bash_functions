@@ -1,8 +1,3 @@
-mcd () {
-    mkdir -pv $1
-    cd $1
-}
-
 function extract {
  if [ -z "$1" ]; then
     # display usage if no parameters given
@@ -39,20 +34,55 @@ function extract {
 fi
 }
 
+# Git
+
 gf() {
    CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
    git add . && git commit -m "$1" && git push origin "$CURRENT_BRANCH"
 
 }
 
+gfr() {
+    git reset @~ "$@" && git commit --amend --no-edit
 
+}
 
-find-up () {
-    path=$(pwd)
-    while [[ "$path" != "" && ! -e "$path/$1" ]]; do
-        path=${path%/*}
-    done
-    echo "$path"
+gswitch() {
+  BRANCH=`git branch | grep "$1"`
+  git checkout $BRANCH
+
+}
+
+# Get the latest changes on master pulled down locally
+# and then rebase them into/onto the current branch
+grm() {
+  CURRENT=`git rev-parse --abbrev-ref HEAD` # figures out the current branch
+  git checkout master
+  git pull
+  git checkout $CURRENT
+  git rebase master
+
+}
+
+# Stash current, then update to latest, then pop the stash
+gsrm() {
+  git stash
+  grm
+  git stash pop
+
+}
+
+# create new branch from a default named branch
+# modify the first line to make it an argument if desired
+gnew() {
+ DEST_BRANCH=$2
+ : ${DEST_BRANCH:='master'}
+ git co $DEST_BRANCH
+ git pull
+ git co -b "$1"
+ # bundle install # If using Bundler (ruby)
+ # bundle exec rake db:migrate
+ git push -u
 
 }
 
@@ -100,6 +130,8 @@ cdnvm(){
 
 }
 
+# Tmux
+
 function kts {
   tmux kill-session -t "$1"
 
@@ -126,9 +158,17 @@ function pyupdate {
 }
 
 
+
+# Folder Navigation
+
 function mnt {
   "mount | awk -F' ' '{ printf \"%s\t%s\n\",\$1,\$3;  }' | column -t | egrep ^/dev/ | sort"
 
+}
+
+function mcd () {
+    mkdir -pv $1
+    cd $1
 }
 
 function cl() {
@@ -140,5 +180,24 @@ function cl() {
     builtin cd "${DIR}" && \
     # use your preferred ls command
         ls -F --color=auto
+
+}
+
+
+function find-up () {
+    path=$(pwd)
+    while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+        path=${path%/*}
+    done
+    echo "$path"
+
+}
+
+function Up {
+  num=$1
+  while [ $num -ne 0   ];do
+    cd ..
+    num=$((num-1))
+  done
 
 }

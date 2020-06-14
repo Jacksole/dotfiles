@@ -1,3 +1,4 @@
+#!/bin/sh
 alias dk='docker'
 alias dkl='docker logs'
 alias dklf='docker logs -f'

@@ -15,6 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 Plugin 'mattn/emmet-vim'
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ap/vim-css-color'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
@@ -33,6 +34,7 @@ Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mikelue/vim-maven-plugin'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -64,12 +66,14 @@ filetype plugin indent on    " required
 set splitbelow
 set splitright
 set nu
-
+set tags=tags
 set showmode
 set showcmd
 set modeline
 set ruler
 set title
+
+let g:better_whitespace_enabled=1
 
 " Spell Checker
 set spell
@@ -281,7 +285,8 @@ nmap <Leader>hu <Plug>GitGutterUndoHunk
 " Generate tags
 set statusline+=%{gutentags#statusline()}
 
-
+ " For jumping to tags in CtrlP
+ nnoremap <leader>. :CtrlPTag<cr>
   " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 

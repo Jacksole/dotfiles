@@ -7,8 +7,6 @@ sensors  # Needs: 'sudo apt-get install lm-sensors'
 uptime   # Needs: 'sudo apt-get install lsscsi'
 free -m
 
-sudo apt-get update && sudo apt-get upgrade
-
 if [ -f ~/.bash_aliases  ]; then
 	. ~/.bash_aliases
 fi
@@ -61,3 +59,4 @@ fi
 
 export DISPLAY=:0
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/leaundre/.local/bin

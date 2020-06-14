@@ -26,7 +26,6 @@ alias top="htop"
 alias df="pydf"
 alias myip="curl http://ipecho.net/plain; echo"
 alias webify="mogrify -resize 690\> *.png"
-alias upload="sftp username@server.com:/path/to/upload/directory"
 # ----------------------
 # Git Aliases
 # ----------------------
@@ -39,25 +38,41 @@ alias gau='git add --update'
 alias gb='git branch'
 alias gbd='git branch --delete '
 alias gc='git commit'
-alias gcm='git commit --message'
+alias gca='git commit -a'
+alias gca!='git commit -a --amend'
 alias gcf='git commit --fixup'
+alias gcl='git clone'
+alias gcm='git commit --message'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcom='git checkout master'
 alias gcos='git checkout staging'
 alias gcod='git checkout develop'
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
 alias gd='git diff'
 alias gda='git diff HEAD'
+alias gdc='git diff --cached'
+alias gfe='git fetch'
+alias ggrh='git reset --hard origin/$(current_branch'
 alias gi='git init'
 alias glg='git log --graph --oneline --decorate --all'
 alias gld='git log --pretty=format:"%h %ad %s" --date=short --all'
 alias gm='git merge --no-ff'
 alias gma='git merge --abort'
 alias gmc='git merge --continue'
-alias gp='git pull'
+alias gpl='git pull'
+alias gplO='git pull origin $(git name-rev --name-only HEAD)'
+alias gps='git push'
+alias gpsO='git push origin $(git name-rev --name-only HEAD)'
 alias gpr='git pull --rebase'
 alias gr='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbiom='git rebase --interactive origin/master'
 alias gs='git status'
+alias gsh='git show'
 alias gss='git status --short'
 alias gst='git stash'
 alias gsta='git stash apply'
@@ -85,28 +100,39 @@ alias bashrefresh='source ~/.bashrc'
 #-------------------------------
 alias pomodorostrt='sleep 1500 && notify-send "Your pomodoro session just ended. Have a well deserved 5 minutes break"'
 alias pomodorobrk='sleep 300 && notify-send "Back to work"'
-alias pomodoro='pomodorostrt; pomodorobrk' 
+alias pomodoro='pomodorostrt; pomodorobrk'
 #--------------------------------
 # Program Aliases
 #--------------------------------
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
+alias pyinstall='python3 -m pip install'
 alias droid='android'
   # Create a Python virtual environment
 alias ve='python3 -m venv ./venv'
 alias va='source ./venv/bin/activate'
 alias py3='python3'
+alias npmg='npm install --global'
+alias npmS='npm install --save'
+alias npmD='npm install --save-dev'
+alias npmO='npm outdated'
+alias npmL='npm list'
+alias npmL0='npm list --depth=0'
+alias npmst='npm run start'
+alias npmt='npm run test'
+alias npmR='npm run'
+alias npmI='npm init'
 #------------------------------
 # File Management
 #------------------------------
 alias mv='mv -i'
 alias rm='rm -i'
-alias tcn='mv --force -t ~/.local/share/Trash' 
+alias tcn='mv --force -t ~/.local/share/Trash'
 # install  colordiff package :)
 alias diff='colordiff'
 alias cp='cp -i'
 alias ln='ln -i'
-alias n='nnn' 
+alias n='nnn'
 # Parenting changing perms on / #
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -127,7 +153,7 @@ alias mysqlstart='sudo service mysql start'
 alias mysqlstop='sudo service mysql stop'
 alias mysqlrestart='sudo service mysql restart'
 alias mysqlstats='sudo service mysql status'
-alias mysqlrun='mysql -uroot -ppassword'
+alias mysqlrun='sudo mysql'
 alias redstart='sudo service redis start'
 alias redstop='sudo service redis stop'
 alias redrestart='sudo service redis restart'
@@ -139,18 +165,20 @@ alias apstart='sudo service apache start'
 alias apstop='sudo service apache stop'
 alias aprestart='sudo service apache restart'
 alias apstats='sudo service apache status'
+alias server='python3 -m SimpleHTTPServer 8000'
+alias upload="sftp username@server.com:/path/to/upload/directory"
 #-------------------------------
 # Misc
 #-------------------------------
-alias wttr='curl wttr.in'
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias bc='bc -l'
 alias now='date +"%T"'
-alias nowtime=now
+alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
+alias tmls='tmux ls'
 #------------------------------
 # Networking
 #------------------------------
@@ -161,15 +189,21 @@ alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 ## shortcut  for iptables and pass it via sudo#
 alias ipt='sudo /sbin/iptables'
- 
+
 # display all rules #
 alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
 alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
 alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
 alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
-alias firewall=iptlist 
+alias firewall='iptlist'
 # get web server headers #
 alias header='curl -I'
- 
+
 # find out if remote server supports gzip / mod_deflate or not #
 alias headerc='curl -I --compress'
+
+## Windows executables:
+alias explore='explorer.exe .'
+alias explorer='explorer.exe .'
+alias news='newsboat'
+alias pods='podboat'
