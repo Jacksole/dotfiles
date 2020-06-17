@@ -107,6 +107,8 @@ alias pomodoro='pomodorostrt; pomodorobrk'
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
 alias pyinstall='python3 -m pip install'
+alias pyuninstall='python3 -m pip uninstall'
+alias pycheck='python3 -m pip check'
 alias droid='android'
   # Create a Python virtual environment
 alias ve='python3 -m venv ./venv'
