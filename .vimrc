@@ -34,8 +34,12 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
+" Autocompletion for Python
+Plugin 'davidhalter/jedi-vim'
+" This is the interesting one: it generates a Tmux config that makes
+" a tmux status line look like a vim airline with an applied theme
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'mikelue/vim-maven-plugin'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -55,6 +59,7 @@ Plugin 'tpope/vim-heroku'
 Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
+Plugin 'mipmip/vim-scimark'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ryanoasis/vim-devicons'
@@ -290,16 +295,75 @@ set statusline+=%{gutentags#statusline()}
  nnoremap <leader>. :CtrlPTag<cr>
   " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_add_default_project_roots = 0
 
   " config project root markers.
-let g:gutentags_project_root = ['.root']
+let g:gutentags_project_root = ['.root', 'package.json', '.git']
 
   " generate datebases in my cache directory, prevent gtags files polluting my
   " project
 let g:gutentags_cache_dir = expand('~/.cache/tags')
-
   " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
+
+
+let g:gutentags_ctags_exclude = [
+      \ '*.git', '*.svg', '*.hg',
+      \ '*/tests/*',
+      \ 'build',
+      \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'bin',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'cache',
+      \ 'compiled',
+      \ 'docs',
+      \ 'example',
+      \ 'bundle',
+      \ 'vendor',
+      \ '*.md',
+      \ '*-lock.json',
+      \ '*.lock',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '.*rc*',
+      \ '*.json',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.bak',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.tmp',
+      \ '*.csproj.user',
+      \ '*.cache',
+      \ '*.pdb',
+      \ 'tags*',
+      \ 'cscope.*',
+      \ '*.css',
+      \ '*.less',
+      \ '*.scss',
+      \ '*.exe', '*.dll',
+      \ '*.mp3', '*.ogg', '*.flac',
+      \ '*.swp', '*.swo',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ ]
+
+
 
 " Template Management
 let g:tmpl_search_paths = ['~/templates']
