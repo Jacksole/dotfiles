@@ -112,6 +112,9 @@ let g:SimpylFold_fold_import = 1
 let python_highlight_all=1
 syntax on
 
+" Add a space in a characters
+nnoremap ss i<space><esc>
+
 " Python formatting
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 
@@ -141,6 +144,7 @@ au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 
 let g:user_emmet_mode='a' "enable emmet all function in all mode."
 let g:user_emmet_leader_key='<C-Y>,'
+
 
 if has('gui_running')
  set background=dark

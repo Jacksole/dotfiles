@@ -193,7 +193,7 @@ function find-up () {
 
 }
 
-function Up {
+function up {
   num=$1
   while [ $num -ne 0   ];do
     cd ..

@@ -81,3 +81,8 @@ _spty_completionetup() {
 }
 
 _spty_completionetup;
+
+
+export ANDROID_HOME=~/Android
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
