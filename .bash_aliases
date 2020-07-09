@@ -12,7 +12,12 @@ alias count='find . -type f | wc -l'
 alias cpv='rsync -ah --info=progress2'
 alias lsl="ls -lhFA | less"
 alias cd..="cd .."
-alias ..='cd ..'
+alias projects='pushd ~/Projects && clear && ls'
+alias x="clear && ls"
+alias ..="cd .. && clear && ls"
+alias ...="cd ../.. && clear && ls"
+alias ....="cd ../../.. && clear && ls"
+alias ....="cd ../../../..&&  clear && ls"
 alias fhere="find . -name"
 alias df="df -Tha --total"
 alias du="du -ach | sort -h"
@@ -92,7 +97,7 @@ alias clean='sudo apt-get clean'
 alias install='sudo apt-get install'
 # Edit .bashrc
 alias bashedit='sudo vim ~/.bashrc'
-
+alias dc='cd'
 # Force terminal to recognize changes to .bashrc
 alias bashrefresh='source ~/.bashrc'
 #-------------------------------
@@ -207,6 +212,5 @@ alias headerc='curl -I --compress'
 
 ## Windows executables:
 alias explore='explorer.exe .'
-alias explorer='explorer.exe .'
 alias news='newsboat'
 alias pods='podboat'
