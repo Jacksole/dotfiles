@@ -57,6 +57,7 @@ Plugin 'tpope/vim-heroku'
 Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
+Plugin 'dbeniamine/cheat.sh-vim'
 Plugin 'mipmip/vim-scimark'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
@@ -605,3 +606,12 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'"
 
+" Cheat Sheet customization
+
+let g:CheatSheetDefaultMode = 0
+let g:CheatSheetProviders = ['syntastic', 'quickfix']
+let g:CheatSheetFrameworks = {
+                \ 'python' : ['python', 'django', ],
+                \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
+                \ 'php' : ['php', 'symphony', 'yii', 'zend'],
+		\}

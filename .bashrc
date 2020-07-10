@@ -86,3 +86,5 @@ _spty_completionetup;
 export ANDROID_HOME=~/Android
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
+export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'

@@ -187,6 +187,10 @@ alias note='vim $HOME/Notes/$(date +%Y-%m-%d_%H:%M.txt)'
 alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
 alias tmls='tmux ls'
+alias checkip='./checkip'
+alias weather='curl wttr.in'
+alias crypto='curl rate.sx'
+alias cht='~/bin/cht.sh'
 #------------------------------
 # Networking
 #------------------------------
@@ -214,3 +218,5 @@ alias headerc='curl -I --compress'
 alias explore='explorer.exe .'
 alias news='newsboat'
 alias pods='podboat'
+alias weather='curl wttr.in'
+alias crypto='curl rate.sx'
