@@ -183,7 +183,6 @@ function cl() {
 
 }
 
-
 function find-up () {
     path=$(pwd)
     while [[ "$path" != "" && ! -e "$path/$1" ]]; do
@@ -201,3 +200,5 @@ function up {
   done
 
 }
+
+

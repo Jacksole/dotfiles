@@ -31,6 +31,8 @@ alias top="htop"
 alias df="pydf"
 alias myip="curl http://ipecho.net/plain; echo"
 alias webify="mogrify -resize 690\> *.png"
+alias cls='clear'
+alias ftc='ls | rev | cut -d '.' -f1 | rev | sort | uniq -c'
 # ----------------------
 # Git Aliases
 # ----------------------
