@@ -68,6 +68,11 @@ Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+syntax on
+set noerrorbells
+set smartindent
+set smartcase
+set incsearch
 set splitbelow
 set splitright
 set nu
@@ -109,7 +114,6 @@ let g:SimpylFold_fold_docstring = 1
 let g:SimpylFold_fold_import = 1
 
 let python_highlight_all=1
-syntax on
 
 " Add a space in a characters
 nnoremap ss i<space><esc>
@@ -268,15 +272,14 @@ let g:airline#extensions#ale#enabled = 1
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
-
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
 
     return l:counts.total == 0 ? 'OK' : printf(
-	\   '%dW %dE',
-	\   all_non_errors,
-	\   all_errors
-	\)
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
 endfunction
 
 set statusline+=%{LinterStatus()}
@@ -611,7 +614,7 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'"
 let g:CheatSheetDefaultMode = 0
 let g:CheatSheetProviders = ['syntastic', 'quickfix']
 let g:CheatSheetFrameworks = {
-                \ 'python' : ['python', 'django', ],
-                \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
-                \ 'php' : ['php', 'symphony', 'yii', 'zend'],
-		\}
+                        \ 'python' : ['python', 'django', ],
+                        \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
+                        \ 'php' : ['php', 'symphony', 'yii', 'zend'],
+			\}
