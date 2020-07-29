@@ -19,9 +19,6 @@ if [ -f ~/.docker_aliases ]; then
 	. ~/.docker_aliases
 fi
 
-if [ -f ~/.docker_fuctions ]; then
-	. ~/.docker_functions
-fi
 
 env=~/.ssh/agent.env
 
@@ -57,9 +54,6 @@ if [ -f /usr/share/powerline/bindings/bash/powerline.sh  ]; then
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
-export DISPLAY=:0
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/leaundre/.local/bin
 _spty_completion() {
     local IFS=$'
 '
@@ -82,9 +76,22 @@ _spty_completionetup() {
 
 _spty_completionetup;
 
+# Get color support for 'less'
+export LESS="--RAW-CONTROL-CHARS"
 
+# Use colors for less, man, etc.
+[[ -f ~/.config/less/termcap  ]] && . ~/.config/less/termcap
+
+# Path Edits
+export DISPLAY=:0
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/leaundre/.local/bin
 export ANDROID_HOME=~/Android
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
 export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'
+export DOCKER_HOST=tcp://localhost:2375
+export SPOTIFY_USER='dj_megabytez'
+export SPOTIFY_PWD='July3088$$!!12'
+export BROWSER='/mnt/c/Program Files/Mozilla Firefox/Firefox.exe'

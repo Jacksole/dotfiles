@@ -94,6 +94,15 @@ map 8 <Esc>:tabe
 map 9 gT
 map 0 gt
 
+" set font terminal font or set gui vim font
+" to a Nerd Font (https://github.com/ryanoasis/nerd-fonts):
+set guifont=DroidSansMono\ Nerd\ Font\ 12
+
+" testing rounded separators (extra-powerline-symbols):
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+
+
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>

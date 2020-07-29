@@ -193,6 +193,7 @@ alias checkip='./checkip'
 alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
 alias cht='~/bin/cht.sh'
+alias checkip='~/checkip'
 #------------------------------
 # Networking
 #------------------------------
@@ -222,3 +223,15 @@ alias news='newsboat'
 alias pods='podboat'
 alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
+alias vlc='/mnt/c/Program Files/VideoLAN/VLC/vlc.exe'
+
+# Googler Aliases
+alias so='googler -j -w stackoverflow.com (xsel)'
+alias define='googler -n 2 define'
+# for Google Videos (any source)
+alias v='googler -V --url-handler mpv $argv'
+# for site-specific videos (e.g. YouTube)
+alias yv='googler -w youtube.com --url-handler mpv $argv'
+
+## Duckduck go
+alias bang='ddgr --gb --np'

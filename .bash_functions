@@ -201,4 +201,160 @@ function up {
 
 }
 
+# Updating via root 
+function apt-updater {
+  apt-get update &&
+  apt-get dist-upgrade -Vy &&
+  apt-get autoremove -y &&
+  apt-get autoclean &&
+  apt-get clean &&
+  reboot
+}
+
+# Docker
+function dkln(){
+  docker logs -f 'docker ps | grep $1 | awk '{print $1}''
+}
+
+function dkstats(){
+if [ $# -eq 0 ]
+   then docker stats --no-stream;
+   else docker stats --no-stream | grep $1;
+fi
+}
+
+function  dktop() {
+  docker stats --format "table {{.Container}}\t{{.Name}}\t{{.CPUPerc}} {{.MemPerc}}\t{{.NetID}}\t{{.BlockID}}"
+}
+
+function dkp() {
+  if [ ! -f .dockerignore  ]; then
+    echo "Warning, .dockerignore file is missing."
+    read -p "Proceed anyway?"
+  fi
+
+  if [ ! -f package.json  ]; then
+    echo "Warning, package.json file is missing."
+    read -p "Are you in the right directory?"
+  fi
+
+  VERSION=`cat package.json | jq .version | sed 's/\"//g'`
+  NAME=`cat package.json | jq .name | sed 's/\"//g'`
+  LABEL="$1/$NAME:$VERSION"
+
+  docker build --build-arg NPM_TOKEN=${NPM_TOKEN} -t $LABEL .
+
+  read -p "Press enter to publish"
+  docker push $LABEL
+
+}
+
+function dkpnc() {
+  if [ ! -f .dockerignore  ]; then
+    echo "Warning, .dockerignore file is missing."
+    read -p "Proceed anyway?"
+  fi
+
+  if [ ! -f package.json  ]; then
+    echo "Warning, package.json file is missing."
+    read -p "Are you in the right directory?"
+  fi
+
+  VERSION=`cat package.json | jq .version | sed 's/\"//g'`
+  NAME=`cat package.json | jq .name | sed 's/\"//g'`
+  LABEL="$1/$NAME:$VERSION"
+
+  docker build --build-arg NPM_TOKEN=${NPM_TOKEN} --no-cache=true -t $LABEL .
+  read -p "Press enter to publish"
+  docker push $LABEL
+
+}
+
+function dkpl() {
+  if [ ! -f .dockerignore  ]; then
+    echo "Warning, .dockerignore file is missing."
+    read -p "Proceed anyway?"
+  fi
+
+  if [ ! -f package.json  ]; then
+    echo "Warning, package.json file is missing."
+    read -p "Are you in the right directory?"
+  fi
+
+  VERSION=`cat package.json | jq .version | sed 's/\"//g'`
+  NAME=`cat package.json | jq .name | sed 's/\"//g'`
+  LATEST="$1/$NAME:latest"
+
+  docker build --build-arg NPM_TOKEN=${NPM_TOKEN} --no-cache=true -t $LATEST .
+  read -p "Press enter to publish"
+  docker push $LATEST
+
+}
+# docker-clean command cleans up all dangling images
+function dkclean() {
+  docker rmi $(docker ps --all -q -f status=exited)
+  docker volume rm $(docker volume ls -qf dangling=true)
+
+}
+
+function dkprune() {
+  docker system prune -af
+
+}
+
+function dkstats() {
+  if [ $# -eq 0  ]
+    then docker stats --no-stream;
+    else docker stats --no-stream | grep $1;
+  fi
+
+}
+
+function dke() {
+  docker exec -it $1 /bin/sh
+
+}
+
+function dkexe() {
+  docker exec -it $1 $2
+
+}
+
+function dkreboot() {
+  osascript -e 'quit app "Docker"'
+  countdown 2
+  open -a Docker
+  echo "Restarting Docker engine"
+  countdown 120
+
+}
+
+function dkstate() {
+  docker inspect $1 | jq .[0].State
+
+}
+
+function dksb() {
+  docker service scale $1=0
+  sleep 2
+  docker service scale $1=$2
+
+}
+
+function dk_mongo() {
+  mongoLabel=`docker ps | grep mongo | awk '{print $NF}'`
+  docker exec -it $mongoLabel mongo "$@"
+
+}
+
+function dk_redis() {
+  redisLabel=`docker ps | grep redis | awk '{print $NF}'`
+  docker exec -it $redisLabel redis-cli
+
+}
+
+function dm-env() {
+	  eval "$(docker-machine env "${1:-default}")"
+	  
+}
 

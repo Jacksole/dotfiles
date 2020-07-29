@@ -1,6 +1,6 @@
 - defaults:
-      link:
-              relink: true
+    link:
+      relink: true
 
 - clean: ['~']
 
@@ -11,10 +11,6 @@
       ~/.bash_aliases: bash_aliases
       ~/.bash_function: bash_function
       ~/.bashrc: bashrc
-
-- create:
-      - ~/downloads
-      - ~/.vim/undo-history
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
