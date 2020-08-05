@@ -86,6 +86,62 @@ gnew() {
 
 }
 
+function git_clean_untracked_safely {
+  TO_REMOVE=`git clean -f -d -n`;
+  if [[ -n "$TO_REMOVE" ]]; then
+    echo "Cleaning...";
+    printf "\n$TO_REMOVE\n\n";
+    echo "Proceed?";
+
+    select result in Yes No; do
+      if [[ "$result" == "Yes" ]]; then
+        echo "Cleaning in progress...";
+        echo "";
+        git clean -f -d;
+        echo "";
+        echo "All files and directories removed!";
+      fi
+      break;
+    done;
+  else
+    echo "Everything is clean";
+  fi;
+}
+
+function git_clean_local_branches {
+  OPTION="-d";
+  if [[ "$1" == "-f" ]]; then
+    echo "WARNING! Removing with force";
+    OPTION="-D";
+  fi;
+
+  TO_REMOVE=`git branch -r | awk "{print \\$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \\$1}"`;
+  if [[ -n "$TO_REMOVE" ]]; then
+    echo "Removing branches...";
+    echo "";
+    printf "\n$TO_REMOVE\n\n";
+    echo "Proceed?";
+
+    select result in Yes No; do
+      if [[ "$result" == "Yes" ]]; then
+        echo "Removing in progress...";
+        echo "$TO_REMOVE" | xargs git branch "$OPTION";
+        if [[ "$?" -ne "0" ]]; then
+          echo ""
+          echo "Some branches was not removed, you have to do it manually!";
+        else
+          echo "All branches removed!";
+        fi
+      fi
+
+      break;
+    done;
+  else
+    echo "You have nothing to clean";
+  fi
+}
+
+# NVM
 cdnvm(){
     cd "$@";
     nvm_path=$(find-up .nvmrc | tr -d '[:space:]')
@@ -152,6 +208,7 @@ function edit {
 
 }
 
+# Python
 function pyupdate {
   python3 -m pip install -U -r "$1"
 
@@ -201,7 +258,7 @@ function up {
 
 }
 
-# Updating via root 
+# Updating via root
 function apt-updater {
   apt-get update &&
   apt-get dist-upgrade -Vy &&
@@ -291,6 +348,7 @@ function dkpl() {
 
 }
 # docker-clean command cleans up all dangling images
+
 function dkclean() {
   docker rmi $(docker ps --all -q -f status=exited)
   docker volume rm $(docker volume ls -qf dangling=true)
@@ -299,6 +357,13 @@ function dkclean() {
 
 function dkprune() {
   docker system prune -af
+
+}
+
+function dpurgeall(){
+	  docker --rm -v $(docker ps -a -q -f status=exited);
+	    docker volume --rm $(docker volume ls -qf dangling=true);
+	      docker image --rm $(docker images -qf dangling=true);
 
 }
 
@@ -355,6 +420,7 @@ function dk_redis() {
 
 function dm-env() {
 	  eval "$(docker-machine env "${1:-default}")"
-	  
+
 }
 
+function tail_ls { ls -l "$1" | tail;  }

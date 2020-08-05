@@ -84,14 +84,29 @@ export LESS="--RAW-CONTROL-CHARS"
 
 # Path Edits
 export DISPLAY=:0
-export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/leaundre/.local/bin
+# Android Path
 export ANDROID_HOME=~/Android
 export PATH=$PATH:$ANDROID_HOME/tools
+export PATH="${ANDROID_HOME}/emulator:${PATH}"
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#Set Dart to Path
+export PATH="$PATH:/usr/lib/dart/bin"
+
+#Set Flutter to Path
+export PATH="$PATH:/home/dre/development/flutter/bin"
+
+# APIs for Checkip
 export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
 export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'
+export VIRUSTOTAL_API_KEY='8052277e9730a30204d8ee9a0abbfd6025fe7362daeb73548e78099b2da55231'
+# Docker Path 
 export DOCKER_HOST=tcp://localhost:2375
+# For headless spotify usages
 export SPOTIFY_USER='dj_megabytez'
 export SPOTIFY_PWD='July3088$$!!12'
+# GUI BROWSER
 export BROWSER='/mnt/c/Program Files/Mozilla Firefox/Firefox.exe'
+#Adding Go to System Path
+export PATH=$PATH:/usr/local/go/bin

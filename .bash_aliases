@@ -179,6 +179,10 @@ alias upload="sftp username@server.com:/path/to/upload/directory"
 #-------------------------------
 # Misc
 #-------------------------------
+# Stocks Listing
+alias stonks='~/Projects/Programming/Go_Projects/stonks/stonks'
+# Gobuster
+alias gobuster='/home/leaundre/go/bin/gobuster'
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -194,9 +198,12 @@ alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
 alias cht='~/bin/cht.sh'
 alias checkip='~/checkip'
+alias bw='~/bw'
 #------------------------------
 # Networking
 #------------------------------
+# Nmap Shortcut
+alias nmap='pwsh.exe -Command nmap.exe'
 # Stop after sending count ECHO_REQUEST packets #
 alias ping='ping -c 5'
 # Do not wait interval 1 second, go fast #
@@ -223,7 +230,7 @@ alias news='newsboat'
 alias pods='podboat'
 alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
-alias vlc='/mnt/c/Program Files/VideoLAN/VLC/vlc.exe'
+alias vlc='"/mnt/c/Program Files/VideoLAN/VLC/vlc.exe"'
 
 # Googler Aliases
 alias so='googler -j -w stackoverflow.com (xsel)'
@@ -231,7 +238,7 @@ alias define='googler -n 2 define'
 # for Google Videos (any source)
 alias v='googler -V --url-handler mpv $argv'
 # for site-specific videos (e.g. YouTube)
-alias yv='googler -w youtube.com --url-handler mpv $argv'
+alias yv='googler -w youtube.com --url-handler vlc $argv'
 
 ## Duckduck go
 alias bang='ddgr --gb --np'
