@@ -424,3 +424,8 @@ function dm-env() {
 }
 
 function tail_ls { ls -l "$1" | tail;  }
+
+function traceroute-mapper {
+	  wslview "https://stefansundin.github.io/traceroute-mapper/?trace=$(traceroute -q1 $* | sed ':a;N;$!ba;s/\n/%0A/g')"
+
+}

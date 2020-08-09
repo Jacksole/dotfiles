@@ -179,6 +179,13 @@ alias upload="sftp username@server.com:/path/to/upload/directory"
 #-------------------------------
 # Misc
 #-------------------------------
+# WSLU
+alias view='wslview'
+# Covid Watch
+alias covid='curl -L covid19.trackercli.com'
+alias usa='curl -L covid19.trackercli.com/usa'
+# Metadata Extraction
+alias exiftool='~/Projects/Github/CyberSecurity/Image_Meta/Image-ExifTool-8.80/exiftool'
 # Stocks Listing
 alias stonks='~/Projects/Programming/Go_Projects/stonks/stonks'
 # Gobuster

@@ -19,7 +19,6 @@ if [ -f ~/.docker_aliases ]; then
 	. ~/.docker_aliases
 fi
 
-
 env=~/.ssh/agent.env
 
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
@@ -105,8 +104,9 @@ export VIRUSTOTAL_API_KEY='8052277e9730a30204d8ee9a0abbfd6025fe7362daeb73548e780
 export DOCKER_HOST=tcp://localhost:2375
 # For headless spotify usages
 export SPOTIFY_USER='dj_megabytez'
-export SPOTIFY_PWD='July3088$$!!12'
+export SPOTIFY_PWD='WyN7TM3Yt8EdRRM'
 # GUI BROWSER
 export BROWSER='/mnt/c/Program Files/Mozilla Firefox/Firefox.exe'
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
+export BW_SESSION="dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=="
