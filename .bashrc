@@ -84,6 +84,9 @@ export LESS="--RAW-CONTROL-CHARS"
 # Path Edits
 export DISPLAY=:0
 export PATH=$PATH:/home/leaundre/.local/bin
+# Wirshark DISPLAY
+export XDG_RUNTIME_DIR=/tmp/runtime-leaundre
+export RUNLEVEL=3
 # Android Path
 export ANDROID_HOME=~/Android
 export PATH=$PATH:$ANDROID_HOME/tools

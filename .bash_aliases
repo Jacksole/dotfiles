@@ -146,10 +146,18 @@ alias n='nnn'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
+# Pane Management
+alias tmls='tmux ls'
 #-------------------------------
 # Folder Management
 #------------------------------
 alias mkdir="mkdir -pv"
+# Alias for pushd
+alias pd="pushd"
+# Alias for popd
+alias p="popd"
+# Alias for bin directory
+alias bin="pushd ~/bin"
 #------------------------------
 # Database Management
 #------------------------------
@@ -199,8 +207,6 @@ alias now='date +"%T"'
 alias note='vim $HOME/Notes/$(date +%Y-%m-%d_%H:%M.txt)'
 alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
-alias tmls='tmux ls'
-alias checkip='./checkip'
 alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
 alias cht='~/bin/cht.sh'
@@ -240,8 +246,9 @@ alias crypto='curl rate.sx'
 alias vlc='"/mnt/c/Program Files/VideoLAN/VLC/vlc.exe"'
 
 # Googler Aliases
-alias so='googler -j -w stackoverflow.com (xsel)'
+alias so='googler -j -w stackoverflow.com'
 alias define='googler -n 2 define'
+alias gsearch='googler -n 7 -c en -l en'
 # for Google Videos (any source)
 alias v='googler -V --url-handler mpv $argv'
 # for site-specific videos (e.g. YouTube)

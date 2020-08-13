@@ -59,6 +59,10 @@ Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
 Plugin 'dbeniamine/cheat.sh-vim'
 Plugin 'mipmip/vim-scimark'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'ryanoasis/vim-devicons'
@@ -278,6 +282,12 @@ let g:ale_completion_enabled = 1
 let b:ale_fix_on_save = 1
   " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
+
+" Trigger configuration. Do not use <tab> if you use
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
