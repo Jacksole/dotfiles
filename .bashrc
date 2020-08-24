@@ -84,9 +84,6 @@ export LESS="--RAW-CONTROL-CHARS"
 # Path Edits
 export DISPLAY=:0
 export PATH=$PATH:/home/leaundre/.local/bin
-# Wirshark DISPLAY
-export XDG_RUNTIME_DIR=/tmp/runtime-leaundre
-export RUNLEVEL=3
 # Android Path
 export ANDROID_HOME=~/Android
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -103,7 +100,7 @@ export PATH="$PATH:/home/dre/development/flutter/bin"
 export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
 export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'
 export VIRUSTOTAL_API_KEY='8052277e9730a30204d8ee9a0abbfd6025fe7362daeb73548e78099b2da55231'
-# Docker Path 
+# Docker Path
 export DOCKER_HOST=tcp://localhost:2375
 # For headless spotify usages
 export SPOTIFY_USER='dj_megabytez'
@@ -113,3 +110,7 @@ export BROWSER='/mnt/c/Program Files/Mozilla Firefox/Firefox.exe'
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
 export BW_SESSION="dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=="
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH=$PATH:$HOME/.git-radar
+export PS1="$PS1\$(git-radar --bash --fetch)"
