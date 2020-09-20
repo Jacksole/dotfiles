@@ -1,20 +1,21 @@
 # Welcome message
-echo -ne "Good Morning,Dre! It's "; date '+%A, %B %-d %Y'
-echo -e "And now your moment of Zen:"; fortune
-echo
+echo "Welcome, Le Aundre! It's "; date '+%A, %B %-d %Y'
+echo "And now your moment of Zen:"; fortune
+
 echo "Hardware Information:"
 sensors  # Needs: 'sudo apt-get install lm-sensors'
 uptime   # Needs: 'sudo apt-get install lsscsi'
 free -m
 
+# shellcheck source=/home/leaundre/.bash_aliases
 if [ -f ~/.bash_aliases  ]; then
 	. ~/.bash_aliases
 fi
-
+# shellcheck source=/home/leaundre/.bash_functions
 if [ -f ~/.bash_functions  ]; then
 	. ~/.bash_functions
 fi
-
+# shellcheck source=/home/leaundre/.docker_aliases
 if [ -f ~/.docker_aliases ]; then
 	. ~/.docker_aliases
 fi
@@ -86,20 +87,20 @@ export DISPLAY=:0
 export PATH=$PATH:/home/leaundre/.local/bin
 # Android Path
 export ANDROID_HOME=~/Android
-export PATH=$PATH:$ANDROID_HOME/tools
+export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="${ANDROID_HOME}/emulator:${PATH}"
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 #Set Dart to Path
 export PATH="$PATH:/usr/lib/dart/bin"
 
 #Set Flutter to Path
-export PATH="$PATH:/home/dre/development/flutter/bin"
+export PATH="$PATH:/home/leaundre/development/flutter/bin"
 
 # APIs for Checkip
 export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
 export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'
-export VIRUSTOTAL_API_KEY='8052277e9730a30204d8ee9a0abbfd6025fe7362daeb73548e78099b2da55231'
+export VIRUSTOTAL_API_KEY='c98d978b966353ce705c10d0f14d1a991e41946d08c58bffaccf8c817b79ab0c'
 # Docker Path
 export DOCKER_HOST=tcp://localhost:2375
 # For headless spotify usages
@@ -109,8 +110,11 @@ export SPOTIFY_PWD='WyN7TM3Yt8EdRRM'
 export BROWSER='/mnt/c/Program Files/Mozilla Firefox/Firefox.exe'
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
-export BW_SESSION="dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=="
+export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=='
 
+# shellcheck source=/home/leaundre/.fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH=$PATH:$HOME/.git-radar
-export PS1="$PS1\$(git-radar --bash --fetch)"
+
+# Get the current local IP address
+export SERVER_IP='hostname -I'

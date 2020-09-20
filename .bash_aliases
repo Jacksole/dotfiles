@@ -113,7 +113,7 @@ alias pomodoro='pomodorostrt; pomodorobrk'
 #--------------------------------
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
-alias pyinstall='python3 -m pip install'
+alias pyinstall='python3 -m pip install --use-feature=2020-resolver'
 alias pyuninstall='python3 -m pip uninstall'
 alias pycheck='python3 -m pip check'
 alias droid='/home/leaundre/Android/android-studio/bin/studio.sh'
@@ -131,6 +131,8 @@ alias npmst='npm run start'
 alias npmt='npm run test'
 alias npmR='npm run'
 alias npmI='npm init'
+# Command line alias to start the browser-sync server
+alias serve="browser-sync start --server --files ."
 #------------------------------
 # File Management
 #------------------------------
@@ -237,8 +239,11 @@ alias header='curl -I'
 
 # find out if remote server supports gzip / mod_deflate or not #
 alias headerc='curl -I --compress'
-
+# RustScan
+alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:alpine  rustscan'
+#------------------------------
 ## Windows executables:
+#------------------------------
 alias explore='explorer.exe .'
 alias news='newsboat'
 alias pods='podboat'

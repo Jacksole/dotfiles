@@ -86,7 +86,7 @@ set showcmd
 set modeline
 set ruler
 set title
-
+set backspace=start,eol,indent
 let g:better_whitespace_enabled=1
 
 " Spell Checker
@@ -178,18 +178,19 @@ map ; :Files<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 map <C-o> :NERDTreeToggle<CR>
 
-let g:NERDTreeIndicatorMapCustom = {
-                        \ "Modified"  : "✹",
-                        \ "Staged"    : "✚",
-                        \ "Untracked" : "✭",
-                        \ "Renamed"   : "➜",
-                        \ "Unmerged"  : "═",
-                        \ "Deleted"   : "✖",
-                        \ "Dirty"     : "✗",
-                        \ "Clean"     : "✔",
-                        \ 'Ignored'   : '☒',
-                        \ "Unknown"   : "?"
-                        \ }
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+	\ "Modified"  : "✹",
+        \ "Staged"    : "✚",
+        \ "Untracked" : "✭",
+        \ "Renamed"   : "➜",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "✖",
+        \ "Dirty"     : "✗",
+        \ "Clean"     : "✔",
+        \ 'Ignored'   : '☒',
+        \ "Unknown"   : "?"
+        \ }
+
 
 " you can add these colors to your .vimrc to help customizing
 let s:brown = "#905532"
@@ -394,6 +395,8 @@ let g:gutentags_ctags_exclude = [
 let g:tmpl_search_paths = ['~/templates']
 let g:tmpl_author_email = 'leaundre.jackson87@gmail.com'
 let g:tmpl_author_name = 'Le Aundre Jackson'
+
+" Default keymap for vim-lsc
 let g:lsc_auto_map = v:true
 
 " TextEdit might fail if hidden is not set.
@@ -405,22 +408,6 @@ set nowritebackup
 
 " Give more space for displaying messages.
 set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -633,7 +620,7 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'"
 let g:CheatSheetDefaultMode = 0
 let g:CheatSheetProviders = ['syntastic', 'quickfix']
 let g:CheatSheetFrameworks = {
-                        \ 'python' : ['python', 'django', ],
-                        \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
-                        \ 'php' : ['php', 'symphony', 'yii', 'zend'],
-			\}
+     \ 'python' : ['python', 'django', ],
+     \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
+     \ 'php' : ['php', 'symphony', 'yii', 'zend'],
+     \}
