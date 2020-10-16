@@ -107,7 +107,7 @@ export DOCKER_HOST=tcp://localhost:2375
 export SPOTIFY_USER='dj_megabytez'
 export SPOTIFY_PWD='WyN7TM3Yt8EdRRM'
 # GUI BROWSER
-export BROWSER='/mnt/c/Program Files/Mozilla Firefox/Firefox.exe'
+export BROWSER='"/mnt/c/Program Files/Mozilla Firefox/firefox.exe"'
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
 export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=='

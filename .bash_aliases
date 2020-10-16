@@ -215,6 +215,7 @@ alias crypto='curl rate.sx'
 alias cht='~/bin/cht.sh'
 alias checkip='~/checkip'
 alias bw='~/bw'
+alias lookup='dict -d gcide $'
 #------------------------------
 # Networking
 #------------------------------
