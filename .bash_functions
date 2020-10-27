@@ -215,7 +215,6 @@ function pyupdate {
 }
 
 
-
 # Folder Navigation
 
 function mnt {

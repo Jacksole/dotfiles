@@ -1,7 +1,9 @@
 # Bash alias to search through history with speed accuracy
 alias hs='history | grep'
 alias ll='ls -lha'
-alias ls='ls -CF'
+alias l='ls -CF'
+alias la='ls -A'
+alias ls='ls --color=auto'
 # Sort by file size
 alias lt='ls --human-readable --size -1 -S --classify'
 # Sort by modification time
@@ -24,7 +26,6 @@ alias du="du -ach | sort -h"
 alias free="free -mt"
 alias ps="ps auxf"
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias mkdir="mkdir -pv"
 alias wget="wget -c"
 alias top="htop"
 alias top="htop"
@@ -137,13 +138,15 @@ alias serve="browser-sync start --server --files ."
 # File Management
 #------------------------------
 alias mv='mv -i'
+alias mkdir="mkdir -pv"
 alias rm='rm -i'
 alias tcn='mv --force -t ~/.local/share/Trash'
 # install  colordiff package :)
 alias diff='colordiff'
 alias cp='cp -i'
 alias ln='ln -i'
-alias n='nnn'
+alias n='nnn -d -e'
+# Sort by file size
 # Parenting changing perms on / #
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -241,7 +244,7 @@ alias header='curl -I'
 # find out if remote server supports gzip / mod_deflate or not #
 alias headerc='curl -I --compress'
 # RustScan
-alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:alpine  rustscan'
+alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:1.10.0'
 #------------------------------
 ## Windows executables:
 #------------------------------
@@ -275,4 +278,3 @@ alias yta-opus="youtube-dl --extract-audio --audio-format opus "
 alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
-

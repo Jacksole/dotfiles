@@ -174,6 +174,7 @@ au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 let g:user_emmet_mode='a' "enable emmet all function in all mode."
 let g:user_emmet_leader_key='<C-Y>,'
 
+let g:coc_disable_startup_warning =1
 
 if has('gui_running')
  set background=dark
