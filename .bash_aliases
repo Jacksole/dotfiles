@@ -117,7 +117,6 @@ alias pyoutdated='python3 -m pip list --outdated'
 alias pyinstall='python3 -m pip install --use-feature=2020-resolver'
 alias pyuninstall='python3 -m pip uninstall'
 alias pycheck='python3 -m pip check'
-alias droid='/home/leaundre/Android/android-studio/bin/studio.sh'
   # Create a Python virtual environment
 alias ve='python3 -m venv ./venv'
 alias va='source ./venv/bin/activate'
@@ -195,6 +194,9 @@ alias upload="sftp username@server.com:/path/to/upload/directory"
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 # WSLU
 alias view='wslview'
+# Browser
+alias firefox='/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
+alias chrome='/mnt/c/Program Files (x86)/Google\Chrome/Application/chrome.exe'
 # Covid Watch
 alias covid='curl -L covid19.trackercli.com'
 alias usa='curl -L covid19.trackercli.com/usa'
@@ -223,7 +225,7 @@ alias lookup='dict -d gcide $'
 # Networking
 #------------------------------
 # Nmap Shortcut
-alias nmap='pwsh.exe -Command nmap.exe'
+alias nmap='pwsh.exe -c nmap'
 # Stop after sending count ECHO_REQUEST packets #
 alias ping='ping -c 5'
 # Do not wait interval 1 second, go fast #

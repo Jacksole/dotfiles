@@ -32,6 +32,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'preservim/nerdtree'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
 " This is the interesting one: it generates a Tmux config that makes
@@ -43,7 +44,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'w0rp/ale'
@@ -58,6 +59,7 @@ Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
 Plugin 'dbeniamine/cheat.sh-vim'
+Plugin 'skywind3000/vim-quickui'
 Plugin 'mipmip/vim-scimark'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -98,14 +100,9 @@ map 8 <Esc>:tabe
 map 9 gT
 map 0 gt
 
-" set font terminal font or set gui vim font
-" to a Nerd Font (https://github.com/ryanoasis/nerd-fonts):
-set guifont=DroidSansMono\ Nerd\ Font\ 12
-
 " testing rounded separators (extra-powerline-symbols):
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
-
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -173,8 +170,6 @@ au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 
 let g:user_emmet_mode='a' "enable emmet all function in all mode."
 let g:user_emmet_leader_key='<C-Y>,'
-
-let g:coc_disable_startup_warning =1
 
 if has('gui_running')
  set background=dark
@@ -261,6 +256,18 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 set conceallevel=1
 
+" Ultisnips Formatting
+" Trigger configuration. You need to change this to something other than <tab>
+" if you use one of the following:
+"  - https://github.com/Valloric/YouCompleteMe
+"  - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<F10>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"
 " ALE formatting
 let g:ale_linters = {
 \ 'python3': ['bandit', 'flake8', 'mypy'],
@@ -404,7 +411,6 @@ let g:gutentags_ctags_exclude = [
       \ ]
 
 
-
 " Template Management
 let g:tmpl_search_paths = ['~/templates']
 let g:tmpl_author_email = 'leaundre.jackson87@gmail.com'
@@ -451,22 +457,6 @@ nmap <F8> <Plug>VimspectorStop
 nmap <F9> <Plug>VimspectorRestart
 
 " COC Settings
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-"Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -479,8 +469,7 @@ endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not
-" mapped by
-" other plugin before putting this into your config.
+" mapped by  other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
      \ pumvisible() ? "\<C-n>" :
      \ <SID>check_back_space() ? "\<TAB>" :
@@ -491,6 +480,7 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -527,7 +517,7 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight the symbol and its references when holdng the cursor
+" Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
@@ -630,7 +620,10 @@ let g:fzf_tags_command = 'ctags -R'
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'"
 
 " Cheat Sheet customization
-
+let g:syntastic_javascript_checkers = [ 'jshint'  ]
+let g:syntastic_ocaml_checkers = ['merlin']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_shell_checkers = ['shellcheck']
 let g:CheatSheetDefaultMode = 0
 let g:CheatSheetProviders = ['syntastic', 'quickfix']
 let g:CheatSheetFrameworks = {

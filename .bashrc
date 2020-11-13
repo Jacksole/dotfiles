@@ -49,8 +49,8 @@ export NVM_DIR="$HOME/.nvm"
 # Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh  ]; then
   powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
+  export POWERLINE_BASH_CONTINUATION=1
+  export POWERLINE_BASH_SELECT=1
   source /usr/share/powerline/bindings/bash/powerline.sh
 fi
 
@@ -91,6 +91,8 @@ export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="${ANDROID_HOME}/emulator:${PATH}"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
+# RustScan
+export RUST_BACKTRACE=1
 #Set Dart to Path
 export PATH="$PATH:/usr/lib/dart/bin"
 
@@ -107,7 +109,7 @@ export DOCKER_HOST=tcp://localhost:2375
 export SPOTIFY_USER='dj_megabytez'
 export SPOTIFY_PWD='WyN7TM3Yt8EdRRM'
 # GUI BROWSER
-export BROWSER='"/mnt/c/Program Files/Mozilla Firefox/firefox.exe"'
+export BROWSER=' '
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
 export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=='
