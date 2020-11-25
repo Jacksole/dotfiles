@@ -246,7 +246,7 @@ alias header='curl -I'
 # find out if remote server supports gzip / mod_deflate or not #
 alias headerc='curl -I --compress'
 # RustScan
-alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan:1.10.0'
+alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan'
 #------------------------------
 ## Windows executables:
 #------------------------------
@@ -256,18 +256,6 @@ alias pods='podboat'
 alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
 alias vlc='"/mnt/c/Program Files/VideoLAN/VLC/vlc.exe"'
-
-# Googler Aliases
-alias so='googler -j -w stackoverflow.com'
-alias define='googler -n 2 define'
-alias gsearch='googler -n 7 -c en -l en'
-# for Google Videos (any source)
-alias v='googler -V --url-handler mpv $argv'
-# for site-specific videos (e.g. YouTube)
-alias yv='googler -w youtube.com --url-handler vlc $argv'
-
-## Duckduck go
-alias bang='ddgr --gb --np'
 
 ## youtube-dl
 alias ytdl='youtube-dl'

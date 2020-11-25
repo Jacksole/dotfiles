@@ -1,4 +1,3 @@
-set nocompatible              " required
 filetype off                  " required
 set encoding=utf-8
 
@@ -31,6 +30,7 @@ Plugin 'natebosch/vim-lsc-dart'
 Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'reedes/vim-colors-pencil'
 Plugin 'preservim/nerdtree'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -46,7 +46,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mg979/vim-visual-multi'
 Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jiangmiao/auto-pairs'
@@ -59,7 +59,6 @@ Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
 Plugin 'dbeniamine/cheat.sh-vim'
-Plugin 'skywind3000/vim-quickui'
 Plugin 'mipmip/vim-scimark'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -67,16 +66,24 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codereview'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
 Plugin 'ryanoasis/vim-devicons'
 " ...
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+call glaive#Install()
 filetype plugin indent on    " required
-
 syntax on
 set noerrorbells
-set smartindent
+set autoindent
 set smartcase
 set incsearch
 set splitbelow
@@ -168,13 +175,14 @@ au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
 au BufNewFile,BufRead *.js, *.html, *.css set shiftwidth=2
 au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 
+" Emmet Settings
 let g:user_emmet_mode='a' "enable emmet all function in all mode."
-let g:user_emmet_leader_key='<C-Y>,'
+let g:user_emmet_leader_key='<c-l>,'
 
 if has('gui_running')
  set background=dark
- colorscheme industry
-else
+ colorscheme vim-colors-pencil
+ else
  colorscheme zenburn
 endif
 
@@ -189,16 +197,16 @@ map <C-o> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 	\ "Modified"  : "✹",
-        \ "Staged"    : "✚",
-        \ "Untracked" : "✭",
-        \ "Renamed"   : "➜",
-        \ "Unmerged"  : "═",
-        \ "Deleted"   : "✖",
-        \ "Dirty"     : "✗",
-        \ "Clean"     : "✔",
-        \ 'Ignored'   : '☒',
-        \ "Unknown"   : "?"
-        \ }
+  \ "Staged"    : "✚",
+  \ "Untracked" : "✭",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "✗",
+  \ "Clean"     : "✔",
+  \ 'Ignored'   : '☒',
+  \ "Unknown"   : "?"
+  \ }
 
 
 " you can add these colors to your .vimrc to help customizing
@@ -257,17 +265,12 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 set conceallevel=1
 
 " Ultisnips Formatting
-" Trigger configuration. You need to change this to something other than <tab>
-" if you use one of the following:
-"  - https://github.com/Valloric/YouCompleteMe
-"  - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<F10>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"
-" " If you want :UltiSnipsEdit to split your window.
+" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-"
+
 " ALE formatting
 let g:ale_linters = {
 \ 'python3': ['bandit', 'flake8', 'mypy'],
@@ -305,11 +308,18 @@ let b:ale_fix_on_save = 1
   " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 
-" Trigger configuration. Do not use <tab> if you use
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -338,9 +348,9 @@ nmap <Leader>hu <Plug>GitGutterUndoHunk
 " Generate tags
 set statusline+=%{gutentags#statusline()}
 
- " For jumping to tags in CtrlP
- nnoremap <leader>. :CtrlPTag<cr>
-  " enable gtags module
+" For jumping to tags in CtrlP
+nnoremap <leader>. :CtrlPTag<cr>
+" enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 let g:gutentags_add_default_project_roots = 0
 
