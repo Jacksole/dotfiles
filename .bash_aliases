@@ -234,6 +234,8 @@ alias ports='netstat -tulanp'
 ## shortcut  for iptables and pass it via sudo#
 alias ipt='sudo /sbin/iptables'
 
+# Openvpn Set-UP
+alias vpn='sudo openvpn ~/CrckerJck.ovpn'
 # display all rules #
 alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
 alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
