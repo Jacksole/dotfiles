@@ -183,7 +183,7 @@ if has('gui_running')
  set background=dark
  colorscheme vim-colors-pencil
  else
- colorscheme zenburn
+ colorscheme industry
 endif
 
 call togglebg#map("<F2>")
@@ -196,17 +196,17 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 map <C-o> :NERDTreeToggle<CR>
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-	\ "Modified"  : "✹",
-  \ "Staged"    : "✚",
-  \ "Untracked" : "✭",
-  \ "Renamed"   : "➜",
-  \ "Unmerged"  : "═",
-  \ "Deleted"   : "✖",
-  \ "Dirty"     : "✗",
-  \ "Clean"     : "✔",
-  \ 'Ignored'   : '☒',
-  \ "Unknown"   : "?"
-  \ }
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
 
 
 " you can add these colors to your .vimrc to help customizing
@@ -273,40 +273,41 @@ let g:UltiSnipsEditSplit="vertical"
 
 " ALE formatting
 let g:ale_linters = {
-\ 'python3': ['bandit', 'flake8', 'mypy'],
-\ 'javascript': ['eslint'],
-\ 'sql': ['sqlint'],
-\ 'tex': ['textlint'],
-\ 'yaml': ['yamllint'],
-\ 'cpp': ['clangd'],
-\ 'c': ['clangd'],
-\ 'json': ['jsonlint'],
-\ 'java': ['checkstyle'],
-\ 'html':['stylelint'],
-\ 'css': ['stylelint'],
-\ 'go': ['golint'],
-\ 'gitcommit': ['gitlint'],
-\ 'dockerfile': ['dockerfile_lint'],
-\ 'dart': ['dartanalyzer'],
-\}
+      \ 'python3': ['bandit', 'flake8', 'mypy'],
+      \ 'javascript': ['eslint'],
+      \ 'sql': ['sqlint'],
+      \ 'tex': ['textlint'],
+      \ 'yaml': ['yamllint'],
+      \ 'cpp': ['clangd'],
+      \ 'c': ['clangd'],
+      \ 'json': ['jsonlint'],
+      \ 'java': ['checkstyle'],
+      \ 'html':['stylelint'],
+      \ 'css': ['stylelint'],
+      \ 'go': ['golint'],
+      \ 'gitcommit': ['gitlint'],
+      \ 'dockerfile': ['dockerfile_lint'],
+      \ 'dart': ['dartanalyzer'],
+      \}
 
-  " In ~/.vim/vimrc, or somewhere similar.
+" In ~/.vim/vimrc, or somewhere similar.
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'python3': ['autopep8']
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['prettier', 'eslint'],
+      \   'python3': ['autopep8']
+      \}
 
-  " Enable completion where available.
-  " This setting must be set before ALE is loaded.
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
 
-  " You should not turn this setting on if you wish to use ALE as a completion
-  " source for other completion plugins, like Deoplete.
+" You should not turn this setting on if you wish to use ALE as a completion
+" source for other completion plugins, like Deoplete.
 let g:ale_completion_enabled = 1
 
 let b:ale_fix_on_save = 1
-  " Set this. Airline will handle the rest.
+" Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
+let g:airline_theme='fairyfloss'
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
@@ -340,8 +341,8 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Git Gutter
-nmap ]c <Plug>GitGutterNextHunk
-nmap [c <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 nmap <Leader>hs <Plug>GitGutterStageHunk
 nmap <Leader>hu <Plug>GitGutterUndoHunk
 

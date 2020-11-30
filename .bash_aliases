@@ -121,6 +121,8 @@ alias pycheck='python3 -m pip check'
 alias ve='python3 -m venv ./venv'
 alias va='source ./venv/bin/activate'
 alias py3='python3'
+alias smbmap='python3 /opt/smbmap/smbmap.py'
+# Node Package Manager
 alias npmg='npm install --global'
 alias npmS='npm install --save'
 alias npmD='npm install --save-dev'
