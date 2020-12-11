@@ -103,15 +103,19 @@ export PATH="$PATH:/home/leaundre/development/flutter/bin"
 export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
 export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'
 export VIRUSTOTAL_API_KEY='c98d978b966353ce705c10d0f14d1a991e41946d08c58bffaccf8c817b79ab0c'
+# Bug Bounty APIs
+export VT_API_KEY='c98d978b966353ce705c10d0f14d1a991e41946d08c58bffaccf8c817b79ab0c'
+export SPYSE_API_TOKEN='04fe0fda-60ac-4bd2-8b7a-feb6ec5d1592'
 # Docker Path
 export DOCKER_HOST=tcp://localhost:2375
 # For headless spotify usages
 export SPOTIFY_USER='dj_megabytez'
 export SPOTIFY_PWD='WyN7TM3Yt8EdRRM'
 # GUI BROWSER
-export BROWSER=' '
+export BROWSER='/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
+# Bitward API Key
 export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=='
 
 # shellcheck source=/home/leaundre/.fzf

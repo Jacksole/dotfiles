@@ -194,11 +194,12 @@ alias upload="sftp username@server.com:/path/to/upload/directory"
 # Misc
 #-------------------------------
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
+alias define='googler -n 2 define'
 # WSLU
 alias view='wslview'
 # Browser
 alias firefox='/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
-alias chrome='/mnt/c/Program Files (x86)/Google\Chrome/Application/chrome.exe'
+alias chrome='/mnt/c/Program Files (x86)/Google Chrome/Application/chrome.exe'
 # Covid Watch
 alias covid='curl -L covid19.trackercli.com'
 alias usa='curl -L covid19.trackercli.com/usa'
@@ -228,6 +229,8 @@ alias lookup='dict -d gcide $'
 #------------------------------
 # Nmap Shortcut
 alias nmap='pwsh.exe -c nmap'
+# Wireshark
+alias wireshark='pwsh.exe -c start wireshark'
 # Stop after sending count ECHO_REQUEST packets #
 alias ping='ping -c 5'
 # Do not wait interval 1 second, go fast #
@@ -235,9 +238,6 @@ alias fastping='ping -c 100 -s.2'
 alias ports='netstat -tulanp'
 ## shortcut  for iptables and pass it via sudo#
 alias ipt='sudo /sbin/iptables'
-
-# Openvpn Set-UP
-alias vpn='sudo openvpn ~/CrckerJck.ovpn'
 # display all rules #
 alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
 alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
@@ -251,6 +251,13 @@ alias header='curl -I'
 alias headerc='curl -I --compress'
 # RustScan
 alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan'
+alias impacket='docker run -it --rm "impacket:latest" '
+alias gitdork='docker run -it gitdorker'
+alias zap='/home/leaundre/ZAP_2.9.0/zap.sh'
+# OSINT Alias
+alias cloud_enum='/home/leaundre/Projects/Github/cloud_enum/cloud_enum.py'
+# DNS searching
+alias sublist3r='python3 /opt/Sublist3r/sublist3r.py'
 #------------------------------
 ## Windows executables:
 #------------------------------

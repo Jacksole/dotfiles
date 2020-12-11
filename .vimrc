@@ -213,11 +213,13 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let s:brown = "#905532"
 let s:aqua =  "#3AFFDB"
 let s:blue = "#689FB6"
-let s:darkBlue = "#44788E"
-let s:purple = "#834F79"
-let s:lightPurple = "#834F79"
-let s:red = "#AE403F"
-let s:beige = "#F5C06F"
+let s:darkBlue = "#00008E"
+let s:RoyalBlue = "#4169E1"
+let s:purple = "#800080"
+let s:DarkMagenta= "#8B008B"
+let s:red = "#FF0000"
+let s:brown="#A52A2A"
+let s:beige = "#F5F5DC"
 let s:yellow = "#F09F17"
 let s:orange = "#D4843E"
 let s:darkOrange = "#F16529"
@@ -225,6 +227,7 @@ let s:pink = "#CB6F6F"
 let s:salmon = "#EE6E73"
 let s:green = "#8FAA54"
 let s:lightGreen = "#31B53E"
+let s:SlateGrey = "#708090"
 let s:white = "#FFFFFF"
 let s:rspec_red = '#FE405F'
 let s:git_orange = '#F54D27'
@@ -232,7 +235,7 @@ let s:git_orange = '#F54D27'
 let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'cpp', 'php', 'rb', 'js', 'css', 'html', 'py']
 let g:NERDTreeExtensionHighlightColor = {} "needed to avoid errors
 let g:NERDTreeExtensionHighlightColor['css'] = s:blue "sets css files to blue
-let g:NERDTreeExtensionHighlightColor['py'] = s:lightPurple "sets python to lightPurple
+let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue "sets python to darkBlue
 let g:NERDTreeExactMatchHighlightColor = {} "needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
 let g:NERDTreePatternMatchHighlightColor = {} "this line is needed to avoid
@@ -642,3 +645,17 @@ let g:CheatSheetFrameworks = {
      \ 'javascript' : ['javascript', 'node', 'angular', 'jquery'],
      \ 'php' : ['php', 'symphony', 'yii', 'zend'],
      \}
+" Opening URLs in VIM
+let g:firefox_exe = '/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
+
+function OpenURL()
+      normal "*yy
+          " let result = getreg("x")
+          "     " return result
+          "         :execute "silent !start ".g:chrome_exe2." ".getreg("*")
+          "         endfunction
+          "
+          "         map ,url :call OpenURL()<CR>
+endfunction
+
+map ,url :call OpenURL()<CR>
