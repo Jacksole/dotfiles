@@ -25,6 +25,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'chrisbra/csv.vim'
+Plugin 'ashisha/image.vim'
 Plugin 'natebosch/vim-lsc'
 Plugin 'natebosch/vim-lsc-dart'
 Plugin 'nvie/vim-flake8'
@@ -42,6 +43,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'deoplete-plugins/deoplete-asm'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
 Plugin 'junegunn/fzf'
@@ -58,12 +60,9 @@ Plugin 'tpope/vim-heroku'
 Plugin 'preservim/nerdcommenter'
 Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
+Plugin 'sotte/presenting.vim'
 Plugin 'dbeniamine/cheat.sh-vim'
 Plugin 'mipmip/vim-scimark'
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " Add maktaba and codefmt to the runtimepath.
@@ -243,6 +242,8 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige "sets the color for
 let g:WebDevIconsDefaultFileSymbolColor = s:blue "sets the color for files
 
+" Make images into ASCII
+au BufRead *.png,*.jpg,*.jpeg :call DisplayImage()
 " Javascript Customizations
 augroup javascript_folding
     au!
@@ -267,12 +268,6 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 set conceallevel=1
 
-" Ultisnips Formatting
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " ALE formatting
 let g:ale_linters = {
@@ -659,3 +654,21 @@ function OpenURL()
 endfunction
 
 map ,url :call OpenURL()<CR>
+
+" Transparent editing of gpg encrypted files.
+" " By Wouter Hanegraaff
+augroup encrypted
+  au!
+  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
+  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
+  autocmd BufReadPre,FileReadPre *.gpg set bin
+  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
+  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg --decrypt 2> /dev/null
+  autocmd BufReadPost,FileReadPost *.gpg set nobin
+  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
+  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
+  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg --default-recipient-self -ae 2>/dev/null
+  autocmd BufWritePost,FileWritePost *.gpg u
+augroup END
+
+let g:presenting_top_margin = 2

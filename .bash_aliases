@@ -220,6 +220,7 @@ alias nowtime='now'
 alias nowdate='date +"%d-%m-%Y"'
 alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
+alias moon='curl wttr.in/moon'
 alias cht='~/bin/cht.sh'
 alias checkip='~/checkip'
 alias bw='~/bw'
@@ -251,6 +252,7 @@ alias header='curl -I'
 alias headerc='curl -I --compress'
 # RustScan
 alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan'
+# Hacking aliases
 alias impacket='docker run -it --rm "impacket:latest" '
 alias gitdork='docker run -it gitdorker'
 alias zap='/home/leaundre/ZAP_2.9.0/zap.sh'
@@ -258,6 +260,7 @@ alias zap='/home/leaundre/ZAP_2.9.0/zap.sh'
 alias cloud_enum='/home/leaundre/Projects/Github/cloud_enum/cloud_enum.py'
 # DNS searching
 alias sublist3r='python3 /opt/Sublist3r/sublist3r.py'
+alias printscan='python ~/Projects/Github/ctf/thme/Printer\Hacking\101/PRET/pret.py'
 #------------------------------
 ## Windows executables:
 #------------------------------
