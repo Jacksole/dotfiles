@@ -252,14 +252,21 @@ alias header='curl -I'
 alias headerc='curl -I --compress'
 # RustScan
 alias rustscan='docker run -it --rm --name rustscan rustscan/rustscan'
+# WpScan
+alias wpscan='docker run -it --rm wpscanteam/wpscan'
 # Hacking aliases
 alias impacket='docker run -it --rm "impacket:latest" '
 alias gitdork='docker run -it gitdorker'
 alias zap='/home/leaundre/ZAP_2.9.0/zap.sh'
+alias hashcat="pwsh.exe -c 'C:\Users\ljack099\hashcat-6.1.1\hashcat.exe'"
+alias ssh2john='sudo python3 /opt/tools/ssh2john.py'
+alias xss='sudo python3 /opt/tools/XSSscan.py'
+alias sqid='sudo ruby /opt/tools/sqid.rb'
 # OSINT Alias
 alias cloud_enum='/home/leaundre/Projects/Github/cloud_enum/cloud_enum.py'
 # DNS searching
 alias sublist3r='python3 /opt/Sublist3r/sublist3r.py'
+# Scanning for Vulnerable printers
 alias printscan='python ~/Projects/Github/ctf/thme/Printer\Hacking\101/PRET/pret.py'
 #------------------------------
 ## Windows executables:

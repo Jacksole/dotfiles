@@ -127,3 +127,4 @@ export SERVER_IP='hostname -I'
 export DOCKER_HOST=tcp://localhost:2375
 # Github CLI Tab completions
 eval "$(gh completion --shell bash)"
+source "$HOME/.cargo/env"

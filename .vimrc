@@ -25,7 +25,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'chrisbra/csv.vim'
-Plugin 'ashisha/image.vim'
 Plugin 'natebosch/vim-lsc'
 Plugin 'natebosch/vim-lsc-dart'
 Plugin 'nvie/vim-flake8'
@@ -242,8 +241,6 @@ let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige "sets the color for
 let g:WebDevIconsDefaultFileSymbolColor = s:blue "sets the color for files
 
-" Make images into ASCII
-au BufRead *.png,*.jpg,*.jpeg :call DisplayImage()
 " Javascript Customizations
 augroup javascript_folding
     au!
@@ -595,6 +592,7 @@ nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" B
 " Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
@@ -654,6 +652,35 @@ function OpenURL()
 endfunction
 
 map ,url :call OpenURL()<CR>
+
+" pancake's exposee for vim:
+let fs=0
+function Exposee()
+  if (g:fs == 0)
+    res 1000
+    vertical res 1000
+    let g:fs=1
+  else
+    exe "normal \<C-W>="
+    let g:fs=0
+  xendif
+endfunction
+map <F10> :call Exposee()<cr>
+
+"Make
+map <F6> :make<cr>
+map <C-F6> :cnext<cr>
+map <S-F6> :cprevious<cr>
+
+map <C-E> 2<C-W>+
+map <C-R> 2<C-W>-
+map <C-T> 2<C-W>>
+map <C-Y> 2<C-W><
+
+au BufNewFile,BufRead *.vala setf cs
+au BufNewFile,BufRead *.vapi setf cs
+au BufNewFile,BufRead *.gtkaml setf cs
+au BufNewFile,BufRead *.gtkon setf cs
 
 " Transparent editing of gpg encrypted files.
 " " By Wouter Hanegraaff
