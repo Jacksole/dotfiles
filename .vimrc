@@ -105,7 +105,7 @@ map 8 <Esc>:tabe
 map 9 gT
 map 0 gt
 
-" testing rounded separators (extra-powerline-symbols):
+" Testing rounded separators (extra-powerline-symbols):
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
 
@@ -115,7 +115,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"Enable folding
+" Setting learder key
+let mapleader=","
+
+" Mapping Esc to CAPS Lock
+
+" Enable folding
 set foldmethod=indent
 set foldlevel=99
 
@@ -346,6 +351,7 @@ set statusline+=%{gutentags#statusline()}
 
 " For jumping to tags in CtrlP
 nnoremap <leader>. :CtrlPTag<cr>
+
 " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 let g:gutentags_add_default_project_roots = 0
@@ -544,12 +550,16 @@ augroup end
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a <Plug>(coc-codeaction-selected)
+
 nmap <leader>a <Plug>(coc-codeaction-selected)
+
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac <Plug>(coc-codeaction)
+
 " Apply AutoFix to problem on the current line
 nmap <leader>qf <Plug>(coc-fix-current)
 " Map function and class text objects
+
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -563,6 +573,7 @@ omap ac <Plug>(coc-classobj-a)
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
 nmap <silent> <C-s> <Plug>(coc-range-select)
+
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
@@ -699,3 +710,30 @@ augroup encrypted
 augroup END
 
 let g:presenting_top_margin = 2
+
+" ack.vim --- {{{
+
+" Use ripgrep for searching ⚡️
+" Options include:
+" --vimgrep -> Needed to parse the rg response properly for ack.vim
+" --type-not sql -> Avoid huge sql file dumps as it slows down the search
+" --smart-case -> Search case insensitive if all lowercase pattern, Search
+" case sensitively otherwise"
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+let g:ack_autoclose = 1
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
+
+" Maps <leader>/ so we're ready to type the search keyword
+nnoremap <Leader>/ :Ack!<Space>
+" }}}
+
+" Navigate quickfix list with ease
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>"
