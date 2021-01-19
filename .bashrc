@@ -121,7 +121,7 @@ export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+ME
 # shellcheck source=/home/leaundre/.fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH=$PATH:$HOME/.git-radar
-
+export PS1="$PS1\$(git-radar --bash --fetch)"
 # Get the current local IP address
 export SERVER_IP='hostname -I'
 export DOCKER_HOST=tcp://localhost:2375

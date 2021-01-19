@@ -35,9 +35,6 @@ Plugin 'preservim/nerdtree'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'jistr/vim-nerdtree-tabs'
-" This is the interesting one: it generates a Tmux config that makes
-" a tmux status line look like a vim airline with an applied theme
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'tpope/vim-commentary'
@@ -86,6 +83,7 @@ set smartcase
 set incsearch
 set splitbelow
 set splitright
+set signcolumn=yes
 set nu
 set tags=tags
 set showmode
@@ -116,7 +114,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Setting learder key
-let mapleader=","
+let mapleader=" "
 
 " Mapping Esc to CAPS Lock
 
@@ -373,6 +371,8 @@ let g:gutentags_ctags_extra_args = [
       \ '--fields=+ailmnS',
       \ ]
 
+" C compile
+map <leader>cp  :w <CR> :!gcc % -o %< && ./%< <CR>
 
 let g:gutentags_ctags_exclude = [
       \ '*.git', '*.svg', '*.hg',

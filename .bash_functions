@@ -186,22 +186,7 @@ cdnvm(){
 
 }
 
-# Tmux
-
-function kts {
-  tmux kill-session -t "$1"
-
-}
-
-function tmnew {
-  tmux new -s "$1"
-
-}
-
-function tmattach {
-  tmux a -t "$1"
-
-}
+function gig() { curl -sL https://www.toptal.com/developers/gitignore/api/\$@ ; }
 
 function edit {
   vim "$1"
