@@ -122,9 +122,12 @@ export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+ME
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export PATH=$PATH:$HOME/.git-radar
 export PS1="$PS1\$(git-radar --bash --fetch)"
+export FZF_DEFAULT_COMMAND="fd --type file --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
 # Get the current local IP address
 export SERVER_IP='hostname -I'
 export DOCKER_HOST=tcp://localhost:2375
 # Github CLI Tab completions
 eval "$(gh completion --shell bash)"
 source "$HOME/.cargo/env"
+export PATH=~/jdk-11.0.9.1+1/bin:$PATH

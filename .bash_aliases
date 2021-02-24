@@ -1,6 +1,6 @@
 # Bash alias to search through history with speed accuracy
 alias hs='history | grep'
-alias ll='ls -lha'
+alias ll='exa -lrF --git --icons'
 alias l='ls -CF'
 alias la='ls -A'
 alias ls='ls --color=auto'
@@ -114,14 +114,13 @@ alias pomodoro='pomodorostrt; pomodorobrk'
 #--------------------------------
 alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
 alias pyoutdated='python3 -m pip list --outdated'
-alias pyinstall='python3 -m pip install --use-feature=2020-resolver'
+alias pyinstall='python3 -m pip install'
 alias pyuninstall='python3 -m pip uninstall'
 alias pycheck='python3 -m pip check'
   # Create a Python virtual environment
 alias ve='python3 -m venv ./venv'
 alias va='source ./venv/bin/activate'
 alias py3='python3'
-alias smbmap='python3 /opt/smbmap/smbmap.py'
 # Node Package Manager
 alias npmg='npm install --global'
 alias npmS='npm install --save'
@@ -195,6 +194,7 @@ alias upload="sftp username@server.com:/path/to/upload/directory"
 #-------------------------------
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 alias define='googler -n 2 define'
+alias cat=bat
 # WSLU
 alias view='wslview'
 # Browser
@@ -222,7 +222,7 @@ alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
 alias moon='curl wttr.in/moon'
 alias cht='~/bin/cht.sh'
-alias checkip='~/checkip'
+alias checkip='/opt/tools/checkip-linux-amd64'
 alias bw='~/bw'
 alias lookup='dict -d gcide $'
 #------------------------------
@@ -247,7 +247,6 @@ alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall='iptlist'
 # get web server headers #
 alias header='curl -I'
-
 # find out if remote server supports gzip / mod_deflate or not #
 alias headerc='curl -I --compress'
 # RustScan
@@ -262,12 +261,19 @@ alias hashcat="pwsh.exe -c 'C:\Users\ljack099\hashcat-6.1.1\hashcat.exe'"
 alias ssh2john='sudo python3 /opt/tools/ssh2john.py'
 alias xss='sudo python3 /opt/tools/XSSscan.py'
 alias sqid='sudo ruby /opt/tools/sqid.rb'
+alias wfuzz='docker run -v $(pwd)/wordlist:/wordlist/ -it ghcr.io/xmendez/wfuzz wfuzz'
+alias sqlmap='python3 /opt/tools/sqlmap-dev/sqlmap.py'
+alias volatility='python3 /opt/tools/volatility3/vol.py'
+alias smbmap='python3 /opt/smbmap/smbmap.py'
 # OSINT Alias
 alias cloud_enum='/home/leaundre/Projects/Github/cloud_enum/cloud_enum.py'
+alias sherlock='sudo python3 /opt/tools/OSINT/sherlock/sherlock/sherlock.py'
 # DNS searching
-alias sublist3r='python3 /opt/Sublist3r/sublist3r.py'
+alias sublist3r='sudo python3 /opt/Sublist3r/sublist3r.py'
 # Scanning for Vulnerable printers
 alias printscan='python ~/Projects/Github/ctf/thme/Printer\Hacking\101/PRET/pret.py'
+# Reverse Engineering
+alias ghidra='/opt/tools/ghidra_9.2.2_PUBLIC/ghidraRun'
 #------------------------------
 ## Windows executables:
 #------------------------------
