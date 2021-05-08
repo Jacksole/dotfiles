@@ -47,12 +47,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Powerline configuration
-if [ -f /usr/share/powerline/bindings/bash/powerline.sh  ]; then
-  powerline-daemon -q
-  export POWERLINE_BASH_CONTINUATION=1
-  export POWERLINE_BASH_SELECT=1
-  source /usr/share/powerline/bindings/bash/powerline.sh
-fi
 
 _spty_completion() {
     local IFS=$'
@@ -91,8 +85,14 @@ export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="${ANDROID_HOME}/emulator:${PATH}"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
+# Powerline
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /home/leaundre/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 # RustScan
 export RUST_BACKTRACE=1
+
 #Set Dart to Path
 export PATH="$PATH:/usr/lib/dart/bin"
 
@@ -103,18 +103,24 @@ export PATH="$PATH:/home/leaundre/development/flutter/bin"
 export GEOIP_LICENSE_KEY='PH17xbVN3msULFaV'
 export ABUSEIPDB_API_KEY='903ec1f58e0d32ab3bb713724184e57cf85e388ba2e4eda0ad5625a7f4921f0780fee82255eb76e3'
 export VIRUSTOTAL_API_KEY='c98d978b966353ce705c10d0f14d1a991e41946d08c58bffaccf8c817b79ab0c'
+
 # Bug Bounty APIs
 export VT_API_KEY='c98d978b966353ce705c10d0f14d1a991e41946d08c58bffaccf8c817b79ab0c'
 export SPYSE_API_TOKEN='04fe0fda-60ac-4bd2-8b7a-feb6ec5d1592'
+
 # Docker Path
 export DOCKER_HOST=tcp://localhost:2375
+
 # For headless spotify usages
 export SPOTIFY_USER='dj_megabytez'
 export SPOTIFY_PWD='WyN7TM3Yt8EdRRM'
+
 # GUI BROWSER
 export BROWSER='/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
+
 #Adding Go to System Path
 export PATH=$PATH:/usr/local/go/bin
+
 # Bitward API Key
 export BW_SESSION='dlx0+OmsSU2Foo4FxzFILGlKx3tMHhFG1sSlyyZjL9r5lgk0oVNfG9DNmH+MEfPLZDSS9fzAtmj5MPwBMzklSQ=='
 
@@ -124,10 +130,15 @@ export PATH=$PATH:$HOME/.git-radar
 export PS1="$PS1\$(git-radar --bash --fetch)"
 export FZF_DEFAULT_COMMAND="fd --type file --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
+
 # Get the current local IP address
 export SERVER_IP='hostname -I'
 export DOCKER_HOST=tcp://localhost:2375
+
 # Github CLI Tab completions
 eval "$(gh completion --shell bash)"
 source "$HOME/.cargo/env"
 export PATH=~/jdk-11.0.9.1+1/bin:$PATH
+
+# Pipenv Shell Completion
+eval "$(pipenv --completion)"

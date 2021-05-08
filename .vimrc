@@ -20,6 +20,7 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'mileszs/ack.vim'
+Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'pangloss/vim-javascript'
 Plugin 'vim-airline/vim-airline'
@@ -59,6 +60,8 @@ Plugin 'tibabit/vim-templates'
 Plugin 'fatih/vim-go'
 Plugin 'sotte/presenting.vim'
 Plugin 'dbeniamine/cheat.sh-vim'
+" Editing Powershell Scripts in VIM
+Plugin 'pprovost/vim-ps1'
 Plugin 'mipmip/vim-scimark'
 " Use release branch (recommend)
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
@@ -115,7 +118,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Setting learder key
-let mapleader=" "
+let mapleader="," " map leader to comma"
 
 " Mapping Esc to CAPS Lock
 
@@ -651,19 +654,27 @@ let g:CheatSheetFrameworks = {
      \ 'php' : ['php', 'symphony', 'yii', 'zend'],
      \}
 " Opening URLs in VIM
-let g:firefox_exe = '/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
-
-function OpenURL()
-      normal "*yy
-          " let result = getreg("x")
-          "     " return result
-          "         :execute "silent !start ".g:chrome_exe2." ".getreg("*")
-          "         endfunction
-          "
-          "         map ,url :call OpenURL()<CR>
+let $PATH = $PATH . ';/mnt/c/Program Files/Mozilla Firefox'
+"=== evoke a web browser
+function! Browser ()
+  let line0 = getline (".")
+  let line = matchstr (line0, "http[^ ]*")
+  :if line==""
+  let line = matchstr (line0, "ftp[^ ]*")
+  :endif
+  :if line==""
+  let line = matchstr (line0, "file[^ ]*")
+  :endif
+  let line = escape (line, "#?&;|%")
+  :if line==""
+  let line = "\"" . (expand("%:p")) . "\""
+  :endif
+  exec ':silent !firefox.exe ' . line
 endfunction
+map \w :call Browser ()<CR>
 
-map ,url :call OpenURL()<CR>
+" MiniMap Settings
+let g:minimap_highlight='Visual'
 
 " pancake's exposee for vim:
 let fs=0

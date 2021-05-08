@@ -3,7 +3,7 @@ alias hs='history | grep'
 alias ll='exa -lrF --git --icons'
 alias l='ls -CF'
 alias la='ls -A'
-alias ls='ls --color=auto'
+alias ls='exa'
 # Sort by file size
 alias lt='ls --human-readable --size -1 -S --classify'
 # Sort by modification time
@@ -126,6 +126,7 @@ alias npmg='npm install --global'
 alias npmS='npm install --save'
 alias npmD='npm install --save-dev'
 alias npmO='npm outdated'
+alias npmU='npm update'
 alias npmL='npm list'
 alias npmL0='npm list --depth=0'
 alias npmst='npm run start'
@@ -204,7 +205,7 @@ alias chrome='/mnt/c/Program Files (x86)/Google Chrome/Application/chrome.exe'
 alias covid='curl -L covid19.trackercli.com'
 alias usa='curl -L covid19.trackercli.com/usa'
 # Metadata Extraction
-alias exiftool='~/Projects/Github/CyberSecurity/Image_Meta/Image-ExifTool-8.80/exiftool'
+alias exiftool='/opt/tools/Image-ExifTool-12.25/exiftool'
 # Stocks Listing
 alias stonks='~/Projects/Programming/Go_Projects/stonks/stonks'
 # Gobuster
@@ -266,8 +267,10 @@ alias sqlmap='python3 /opt/tools/sqlmap-dev/sqlmap.py'
 alias volatility='python3 /opt/tools/volatility3/vol.py'
 alias smbmap='python3 /opt/smbmap/smbmap.py'
 # OSINT Alias
-alias cloud_enum='/home/leaundre/Projects/Github/cloud_enum/cloud_enum.py'
-alias sherlock='sudo python3 /opt/tools/OSINT/sherlock/sherlock/sherlock.py'
+alias skiptrace='docker run -it --name skiptracer xshuden/skiptracer'
+alias cloud_enum='/opt/tools/cloud_enum/cloud_enum.py'
+alias enum_linux='/opt/tools/enum4linux-0.9.0/enum4linux.pl'
+alias sherlock='sudo python3 /opt/tools/OSINT/sherlock/sherlock/sherlock.py --timeout 1'
 # DNS searching
 alias sublist3r='sudo python3 /opt/Sublist3r/sublist3r.py'
 # Scanning for Vulnerable printers
