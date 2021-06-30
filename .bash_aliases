@@ -89,6 +89,7 @@ alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsts='git stash save'
 alias startgit='cd `git rev-parse --show-toplevel` && git checkout master && git pull'
+alias branch='git branch | grep -v "^\*" |fzf --height=20% --reverse --info=inline | xargs git co'
 #---------------------------------
 # Bash Maintenance
 #--------------------------------
@@ -283,8 +284,6 @@ alias ghidra='/opt/tools/ghidra_9.2.2_PUBLIC/ghidraRun'
 alias explore='explorer.exe .'
 alias news='newsboat'
 alias pods='podboat'
-alias weather='curl wttr.in'
-alias crypto='curl rate.sx'
 alias vlc='"/mnt/c/Program Files/VideoLAN/VLC/vlc.exe"'
 
 ## youtube-dl
