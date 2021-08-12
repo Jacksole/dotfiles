@@ -1,5 +1,106 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"               ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+"               ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+"               ██║   ██║██║██╔████╔██║██████╔╝██║
+"               ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"                ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 filetype off                  " required
 set encoding=utf-8
+
+filetype plugin indent on    " required
+syntax on
+set noerrorbells
+set autoindent
+set smartcase
+set incsearch
+set splitbelow
+set splitright
+set signcolumn=yes
+set nu
+set tags=tags
+set showmode
+set showcmd
+set modeline
+set ruler
+set title
+set backspace=start,eol,indent
+let g:better_whitespace_enabled=1
+
+" Spell Checker
+set spell
+set spellfile=~/.vim/spell/en.utf-8.add
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+let g:SimpylFold_docstring_preview=1
+
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 1
+let g:SimpylFold_fold_import = 1
+
+let python_highlight_all=1
+" Emmet Settings
+let g:user_emmet_mode='a' "enable emmet all function in all mode."
+let g:user_emmet_leader_key='<c-l>,'
+
+
+
+" NERDTree Customizations
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+map <C-o> :NERDTreeToggle<CR>
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
+" you can add these colors to your .vimrc to help customizing
+let s:brown = "#905532"
+let s:aqua =  "#3AFFDB"
+let s:blue = "#689FB6"
+let s:darkBlue = "#00008E"
+let s:RoyalBlue = "#4169E1"
+let s:purple = "#800080"
+let s:DarkMagenta= "#8B008B"
+let s:red = "#FF0000"
+let s:brown="#A52A2A"
+let s:beige = "#F5F5DC"
+let s:yellow = "#F09F17"
+let s:orange = "#D4843E"
+let s:darkOrange = "#F16529"
+let s:pink = "#CB6F6F"
+let s:salmon = "#EE6E73"
+let s:green = "#8FAA54"
+let s:lightGreen = "#31B53E"
+let s:SlateGrey = "#708090"
+let s:white = "#FFFFFF"
+let s:rspec_red = '#FE405F'
+let s:git_orange = '#F54D27'
+
+let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'cpp', 'php', 'rb', 'js', 'css', 'html', 'py']
+let g:NERDTreeExtensionHighlightColor = {} "needed to avoid errors
+let g:NERDTreeExtensionHighlightColor['css'] = s:blue "sets css files to blue
+let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue "sets python to darkBlue
+let g:NERDTreeExactMatchHighlightColor = {} "needed to avoid error
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
+let g:NERDTreePatternMatchHighlightColor = {} "this line is needed to avoid
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige "sets the color for
+let g:WebDevIconsDefaultFileSymbolColor = s:blue "sets the color for files
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -9,6 +110,8 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+
+" Plugins ----------------------------------------------{{{
 Plugin 'gmarik/Vundle.vim'
 
 " add all your plugins here (note older versions of Vundle
@@ -75,41 +178,24 @@ Plugin 'google/vim-codefmt'
 Plugin 'google/vim-glaive'
 Plugin 'ryanoasis/vim-devicons'
 " ...
-
+"}}}
+"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 call glaive#Install()
-filetype plugin indent on    " required
-syntax on
-set noerrorbells
-set autoindent
-set smartcase
-set incsearch
-set splitbelow
-set splitright
-set signcolumn=yes
-set nu
-set tags=tags
-set showmode
-set showcmd
-set modeline
-set ruler
-set title
-set backspace=start,eol,indent
-let g:better_whitespace_enabled=1
 
-" Spell Checker
-set spell
-set spellfile=~/.vim/spell/en.utf-8.add
-
+" MAPPINGS---------------------------------------------{{{
+"
 " Switch tabs
 map 8 <Esc>:tabe
 map 9 gT
 map 0 gt
 
-" Testing rounded separators (extra-powerline-symbols):
-let g:airline_left_sep = "\uE0B4"
-let g:airline_right_sep = "\uE0B6"
+" Setting learder key
+let mapleader="," " map leader to comma"
+
+" Activate Fuzzy Finder
+map ; :Files<CR>
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -117,42 +203,132 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" Setting learder key
-let mapleader="," " map leader to comma"
-
-" Mapping Esc to CAPS Lock
-
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-
 " Enable folding with the spacebar
 nnoremap <space> za
-
-let g:SimpylFold_docstring_preview=1
-
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring = 1
-let g:SimpylFold_fold_import = 1
-
-let python_highlight_all=1
-
 " Add a space in a characters
 nnoremap ss i<space><esc>
+ " Navigate to next error
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-" Set Vim Background Translucent
-let t:is_transparent = 0
-function! Toggle_transparent_background()
-  if t:is_transparent == 0
-    hi Normal guibg=#111111 ctermbg=black
-    let t:is_transparent = 1
-  else
-    hi Normal guibg=NONE ctermbg=NONE
-    let t:is_transparent = 0
-  endif
+" Git Gutter
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterUndoHunk
+
+" Maps <leader>/ so we're ready to type the search keyword
+nnoremap <Leader>/ :Ack!<Space>
+" }}}
+
+" Navigate quickfix list with ease
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>"
+"Make
+map <F6> :make<cr>
+map <C-F6> :cnext<cr>
+map <S-F6> :cprevious<cr>
+
+map <C-E> 2<C-W>+
+map <C-R> 2<C-W>-
+map <C-T> 2<C-W>>
+map <C-Y> 2<C-W><
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" B
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+"}}}
+
+
+" STATUS LINE ------------------------------------------------------------ {{{
+" Testing rounded separators (extra-powerline-symbols):
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme='fairyfloss'
+set statusline+=%{LinterStatus()}
+
+" Generate tags
+set statusline+=%{gutentags#statusline()}
+" }}}
+
+
+" VIMSCRIPT -------------------------------------------------------------- {{{
+"
+if has('gui_running')
+ set background=dark
+ colorscheme vim-colors-pencil
+ else
+ colorscheme industry
+endif
+
+call togglebg#map("<F2>")
+
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+        \   '%dW %dE',
+        \   all_non_errors,
+        \   all_errors
+        \)
 endfunction
-nnoremap <C-x><C-t> :call Toggle_transparent_background()<CR>
+"
+au BufNewFile,BufRead *.vala setf cs
+au BufNewFile,BufRead *.vapi setf cs
+au BufNewFile,BufRead *.gtkaml setf cs
+au BufNewFile,BufRead *.gtkon setf cs
 
+" Transparent editing of gpg encrypted files.
+" " By Wouter Hanegraaff
+augroup encrypted
+  au!
+  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
+  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
+  autocmd BufReadPre,FileReadPre *.gpg set bin
+  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
+  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg --decrypt 2> /dev/null
+  autocmd BufReadPost,FileReadPost *.gpg set nobin
+  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
+  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
+  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg --default-recipient-self -ae 2>/dev/null
+  autocmd BufWritePost,FileWritePost *.gpg u
+augroup END
+
+"}}}
+
+" Code Formatting -------------------------------------------------------------- {{{
 " Python formatting
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 
@@ -179,75 +355,6 @@ au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
 au BufNewFile,BufRead *.js, *.html, *.css set softtabstop=2
 au BufNewFile,BufRead *.js, *.html, *.css set shiftwidth=2
 au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2
-
-" Emmet Settings
-let g:user_emmet_mode='a' "enable emmet all function in all mode."
-let g:user_emmet_leader_key='<c-l>,'
-
-if has('gui_running')
- set background=dark
- colorscheme vim-colors-pencil
- else
- colorscheme industry
-endif
-
-call togglebg#map("<F2>")
-
-" Activate Fuzzy Finder
-map ; :Files<CR>
-
-" NERDTree Customizations
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-map <C-o> :NERDTreeToggle<CR>
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-      \ "Modified"  : "✹",
-      \ "Staged"    : "✚",
-      \ "Untracked" : "✭",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "═",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "✗",
-      \ "Clean"     : "✔",
-      \ 'Ignored'   : '☒',
-      \ "Unknown"   : "?"
-      \ }
-
-
-" you can add these colors to your .vimrc to help customizing
-let s:brown = "#905532"
-let s:aqua =  "#3AFFDB"
-let s:blue = "#689FB6"
-let s:darkBlue = "#00008E"
-let s:RoyalBlue = "#4169E1"
-let s:purple = "#800080"
-let s:DarkMagenta= "#8B008B"
-let s:red = "#FF0000"
-let s:brown="#A52A2A"
-let s:beige = "#F5F5DC"
-let s:yellow = "#F09F17"
-let s:orange = "#D4843E"
-let s:darkOrange = "#F16529"
-let s:pink = "#CB6F6F"
-let s:salmon = "#EE6E73"
-let s:green = "#8FAA54"
-let s:lightGreen = "#31B53E"
-let s:SlateGrey = "#708090"
-let s:white = "#FFFFFF"
-let s:rspec_red = '#FE405F'
-let s:git_orange = '#F54D27'
-
-let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'cpp', 'php', 'rb', 'js', 'css', 'html', 'py']
-let g:NERDTreeExtensionHighlightColor = {} "needed to avoid errors
-let g:NERDTreeExtensionHighlightColor['css'] = s:blue "sets css files to blue
-let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue "sets python to darkBlue
-let g:NERDTreeExactMatchHighlightColor = {} "needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange
-let g:NERDTreePatternMatchHighlightColor = {} "this line is needed to avoid
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets
-let g:WebDevIconsDefaultFolderSymbolColor = s:beige "sets the color for
-let g:WebDevIconsDefaultFileSymbolColor = s:blue "sets the color for files
-
 " Javascript Customizations
 augroup javascript_folding
     au!
@@ -269,9 +376,6 @@ let g:javascript_conceal_super                = "Ω"
 let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
-
-set conceallevel=1
-
 
 " ALE formatting
 let g:ale_linters = {
@@ -307,49 +411,11 @@ let g:ale_fixers = {
 let g:ale_completion_enabled = 1
 
 let b:ale_fix_on_save = 1
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='fairyfloss'
+"}}}
 
-augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
-  autocmd FileType dart AutoFormatBuffer dartfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType python AutoFormatBuffer autopep8
-  autocmd FileType rust AutoFormatBuffer rustfmt
-  autocmd FileType vue AutoFormatBuffer prettier
-augroup END
 
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+set conceallevel=1
 
-    return l:counts.total == 0 ? 'OK' : printf(
-        \   '%dW %dE',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
-
-set statusline+=%{LinterStatus()}
-
- " Navigate to next error
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" Git Gutter
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap <Leader>hs <Plug>GitGutterStageHunk
-nmap <Leader>hu <Plug>GitGutterUndoHunk
-
-" Generate tags
-set statusline+=%{gutentags#statusline()}
 
 " For jumping to tags in CtrlP
 nnoremap <leader>. :CtrlPTag<cr>
@@ -594,24 +660,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" B
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " Opening the COC config file
 function! SetupCommandAbbrs(from, to)
   exec 'cnoreabbrev <expr> '.a:from
@@ -708,36 +756,6 @@ function Exposee()
 endfunction
 map <F10> :call Exposee()<cr>
 
-"Make
-map <F6> :make<cr>
-map <C-F6> :cnext<cr>
-map <S-F6> :cprevious<cr>
-
-map <C-E> 2<C-W>+
-map <C-R> 2<C-W>-
-map <C-T> 2<C-W>>
-map <C-Y> 2<C-W><
-
-au BufNewFile,BufRead *.vala setf cs
-au BufNewFile,BufRead *.vapi setf cs
-au BufNewFile,BufRead *.gtkaml setf cs
-au BufNewFile,BufRead *.gtkon setf cs
-
-" Transparent editing of gpg encrypted files.
-" " By Wouter Hanegraaff
-augroup encrypted
-  au!
-  autocmd BufReadPre,FileReadPre *.gpg set viminfo=
-  autocmd BufReadPre,FileReadPre *.gpg set noswapfile noundofile nobackup
-  autocmd BufReadPre,FileReadPre *.gpg set bin
-  autocmd BufReadPre,FileReadPre *.gpg let ch_save = &ch|set ch=2
-  autocmd BufReadPost,FileReadPost *.gpg '[,']!gpg --decrypt 2> /dev/null
-  autocmd BufReadPost,FileReadPost *.gpg set nobin
-  autocmd BufReadPost,FileReadPost *.gpg let &ch = ch_save|unlet ch_save
-  autocmd BufReadPost,FileReadPost *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-  autocmd BufWritePre,FileWritePre *.gpg '[,']!gpg --default-recipient-self -ae 2>/dev/null
-  autocmd BufWritePost,FileWritePost *.gpg u
-augroup END
 
 let g:presenting_top_margin = 2
 
@@ -759,11 +777,3 @@ let g:ack_use_cword_for_empty_search = 1
 
 " Don't jump to first match
 cnoreabbrev Ack Ack!
-
-" Maps <leader>/ so we're ready to type the search keyword
-nnoremap <Leader>/ :Ack!<Space>
-" }}}
-
-" Navigate quickfix list with ease
-nnoremap <silent> [q :cprevious<CR>
-nnoremap <silent> ]q :cnext<CR>"

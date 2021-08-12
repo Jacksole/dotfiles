@@ -224,7 +224,6 @@ alias weather='curl wttr.in'
 alias crypto='curl rate.sx'
 alias moon='curl wttr.in/moon'
 alias cht='~/bin/cht.sh'
-alias checkip='/opt/tools/checkip-linux-amd64'
 alias bw='~/bw'
 alias lookup='dict -d gcide $'
 #------------------------------
